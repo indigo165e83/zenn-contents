@@ -1,0 +1,38 @@
+{
+  "title": "VSCode カスタマイズ 便利ワザ windows",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-05-04",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-04",
+      "body_markdown": "- キーボード一覧の表示\nCtrl + ｋ + Ctrl + s\n-"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-04",
+      "body_markdown": "拡張機能　Insert Date String をインストール\nキーボード一覧の表示 Ctrl + ｋ + Ctrl + s を表示して、ショートカットを割り当て\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "テーマ One Dark Pro がなかなか良い"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "## git commit 時のエディタをVSCodeにする\ngit config --global core.editor 'code --wait'\n\n## git rebase -i 時のエディタをVSCodeにする\ngit config --global sequence.editor 'code --wait'"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-06",
+      "body_markdown": "右クリック時の「xxxへ移動」\n- 定義へ移動\n- 型定義へ移動\n- 実装へ移動\n- 参照へ移動\n- ソース定義に移動\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "マルチカーソル\nページの全単語を選択\nCtrl＋Shift＋Lキー"
+    }
+  ]
+}

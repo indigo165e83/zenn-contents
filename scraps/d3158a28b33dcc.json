@@ -1,0 +1,50 @@
+{
+  "title": "gitのよくつかうコマンド",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-05",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-05",
+      "body_markdown": "直前にコミットしたメッセージを変更する\n\n```bash\ngit commit --amend -m \"修正したい内容\"\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "ブランチの作成+ブランチの切り替え\n```bash\ngit checkout -b [ブランチ名]\n```\n",
+      "body_updated_at": "2023-06-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "ブランチを確認\n```bash\ngit branch\ngit branch -a\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "ローカルのブランチをリモートに作成する\n```bash\ngit push -u origin [ブランチ名]\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "リモートリポジトリの確認\n```bash\ngit remote -v\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "リモートリポジトリのパス変更\n```bash\ngit remote set-url <リモートレポジトリ名> <新しいURL>\n//例\ngit remote set-url origin https://github.com/ai-biz20-sasaki/docker-getting-started\n```\n\nリモートリポジトリの削除\n```bash\ngit remote rm <リモート名>\n```\n",
+      "body_updated_at": "2023-06-25"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "公式サイト\nhttps://git-scm.com/book/ja/v2"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-27",
+      "body_markdown": "Commit時に開くエディターをVSCodeにする\n```bash\ngit config --global core.editor 'code --wait'\n```"
+    }
+  ]
+}

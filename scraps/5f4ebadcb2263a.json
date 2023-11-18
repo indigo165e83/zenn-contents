@@ -1,0 +1,31 @@
+{
+  "title": "CSSについての覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-19",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-19",
+      "body_markdown": "## まず、ここをチェック\n### MDN CSS Reference\nhttps://developer.mozilla.org/ja/docs/Web/CSS/Reference\n\n### CSS セレクター\nhttps://developer.mozilla.org/ja/docs/Web/CSS/CSS_selectors\n\n### メディアクエリ @media\nhttps://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries#%e6%a7%8b%e6%96%87\nhttps://developer.mozilla.org/ja/docs/Web/CSS/@media\n\n### CSS position relative absolute\nhttps://developer.mozilla.org/ja/docs/Web/CSS/position\nhttps://tailwindcss.com/docs/top-right-bottom-left",
+      "body_updated_at": "2023-09-22"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-19",
+      "body_markdown": "レスポンシブデザイン\nhttps://tailwindcss.com/docs/responsive-design\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-27",
+      "body_markdown": "tailwindのブレークポイント\nhttps://tailwindcss.com/docs/responsive-design\n\nこんな感じでブレークポイントにhidden属性をつけて使うと便利\n```html\n<svg className=\"md:hidden h-6 w-6 fill-current\" viewBox=\"0 0 24 24\">\n```",
+      "body_updated_at": "2023-06-27"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-30",
+      "body_markdown": "transition\n\nhttps://developer.mozilla.org/ja/docs/Web/CSS/transition\n\n```css\n/* 1 つのプロパティへの適用 */\n/* プロパティ名 | 所要時間(duration) */\ntransition: margin-right 4s;\n\n/* プロパティ名 | 所要時間(duration) | 待ち時間(delay) */\ntransition: margin-right 4s 1s;\n\n/* プロパティ名 | 所要時間(duration) | イージング関数 */\ntransition: margin-right 4s ease-in-out;\n\n/* プロパティ名 | 所要時間(duration) | イージング関数 | 待ち時間(delay) */\ntransition: margin-right 4s ease-in-out 1s;\n\n/* 2 つのプロパティへの適用 */\ntransition: margin-right 4s, color 1s;\n\n/* 変化するすべてのプロパティへの適用 */\ntransition: all 0.5s ease-out;\n\n/* グローバル値 */\ntransition: inherit;\ntransition: initial;\ntransition: revert;\ntransition: unset;\n```",
+      "body_updated_at": "2023-06-30"
+    }
+  ]
+}

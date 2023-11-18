@@ -1,0 +1,165 @@
+{
+  "title": "dockerメモ",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-05-06",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-06",
+      "body_markdown": "このチュートリアルで、概要が理解できる\nhttps://docs.docker.com/get-started/\n",
+      "body_updated_at": "2023-05-06"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "Docker新旧コマンド\nhttps://qiita.com/zembutsu/items/6e1ad18f0d548ce6c266"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-06",
+      "body_markdown": "docker のコマンド一覧\n```\n$ docker --help\n\nUsage:  docker [OPTIONS] COMMAND\n\nA self-sufficient runtime for containers\n\nOptions:\n      --config string      Location of client config files (default \"/home/aibizsasaki/.docker\")\n  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and\n                           default context set with \"docker context use\")\n  -D, --debug              Enable debug mode\n  -H, --host list          Daemon socket(s) to connect to\n  -l, --log-level string   Set the logging level (\"debug\"|\"info\"|\"warn\"|\"error\"|\"fatal\") (default \"info\")\n      --tls                Use TLS; implied by --tlsverify\n      --tlscacert string   Trust certs signed only by this CA (default \"/home/aibizsasaki/.docker/ca.pem\")\n      --tlscert string     Path to TLS certificate file (default \"/home/aibizsasaki/.docker/cert.pem\")\n      --tlskey string      Path to TLS key file (default \"/home/aibizsasaki/.docker/key.pem\")\n      --tlsverify          Use TLS and verify the remote\n  -v, --version            Print version information and quit\n\nManagement Commands:\n  builder     Manage builds\n  buildx*     Docker Buildx (Docker Inc., v0.10.4)\n  compose*    Docker Compose (Docker Inc., v2.17.2)\n  config      Manage Docker configs\n  container   Manage containers\n  context     Manage contexts\n  dev*        Docker Dev Environments (Docker Inc., v0.1.0)\n  extension*  Manages Docker extensions (Docker Inc., v0.2.19)\n  image       Manage images\n  init*       Creates Docker-related starter files for your project (Docker Inc., v0.1.0-beta.2)\n  manifest    Manage Docker image manifests and manifest lists\n  network     Manage networks\n  node        Manage Swarm nodes\n  plugin      Manage plugins\n  sbom*       View the packaged-based Software Bill Of Materials (SBOM) for an image (Anchore Inc., 0.6.0)\n  scan*       Docker Scan (Docker Inc., v0.25.0)\n  scout*      Command line tool for Docker Scout (Docker Inc., v0.9.0)\n  secret      Manage Docker secrets\n  service     Manage services\n  stack       Manage Docker stacks\n  swarm       Manage Swarm\n  system      Manage Docker\n  trust       Manage trust on Docker images\n  volume      Manage volumes\n\nCommands:\n  attach      Attach local standard input, output, and error streams to a running container\n  build       Build an image from a Dockerfile\n  commit      Create a new image from a container's changes\n  cp          Copy files/folders between a container and the local filesystem\n  create      Create a new container\n  diff        Inspect changes to files or directories on a container's filesystem\n  events      Get real time events from the server\n  exec        Run a command in a running container\n  export      Export a container's filesystem as a tar archive\n  history     Show the history of an image\n  images      List images\n  import      Import the contents from a tarball to create a filesystem image\n  info        Display system-wide information\n  inspect     Return low-level information on Docker objects\n  kill        Kill one or more running containers\n  load        Load an image from a tar archive or STDIN\n  login       Log in to a Docker registry\n  logout      Log out from a Docker registry\n  logs        Fetch the logs of a container\n  pause       Pause all processes within one or more containers\n  port        List port mappings or a specific mapping for the container\n  ps          List containers\n  pull        Pull an image or a repository from a registry\n  push        Push an image or a repository to a registry\n  rename      Rename a container\n  restart     Restart one or more containers\n  rm          Remove one or more containers\n  rmi         Remove one or more images\n  run         Run a command in a new container\n  save        Save one or more images to a tar archive (streamed to STDOUT by default)\n  search      Search the Docker Hub for images\n  start       Start one or more stopped containers\n  stats       Display a live stream of container(s) resource usage statistics\n  stop        Stop one or more running containers\n  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE\n  top         Display the running processes of a container\n  unpause     Unpause all processes within one or more containers\n  update      Update configuration of one or more containers\n  version     Show the Docker version information\n  wait        Block until one or more containers stop, then print their exit codes\n\nRun 'docker COMMAND --help' for more information on a command.\n\nTo get more help with docker, check out our guides at https://docs.docker.com/go/guides/\n```",
+      "body_updated_at": "2023-05-06"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-06",
+      "body_markdown": "docker image コマンドの一覧\n```\n$ docker image --help\n\nUsage:  docker image COMMAND\n\nManage images\n\nCommands:\n  build       Build an image from a Dockerfile\n  history     Show the history of an image\n  import      Import the contents from a tarball to create a filesystem image\n  inspect     Display detailed information on one or more images\n  load        Load an image from a tar archive or STDIN\n  ls          List images\n  prune       Remove unused images\n  pull        Pull an image or a repository from a registry\n  push        Push an image or a repository to a registry\n  rm          Remove one or more images\n  save        Save one or more images to a tar archive (streamed to STDOUT by default)\n  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE\n\nRun 'docker image COMMAND --help' for more information on a command.\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-06",
+      "body_markdown": "docker container コマンド一覧\n```\n$ docker image --help\n\nUsage:  docker image COMMAND\n\nManage images\n\nCommands:\n  build       Build an image from a Dockerfile\n  history     Show the history of an image\n  import      Import the contents from a tarball to create a filesystem image\n  inspect     Display detailed information on one or more images\n  load        Load an image from a tar archive or STDIN\n  ls          List images\n  prune       Remove unused images\n  pull        Pull an image or a repository from a registry\n  push        Push an image or a repository to a registry\n  rm          Remove one or more images\n  save        Save one or more images to a tar archive (streamed to STDOUT by default)\n  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE\n\nRun 'docker image COMMAND --help' for more information on a command.\n\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-06",
+      "body_markdown": "docker volume コマンドの一覧\n```\n$ docker volume --help\n\nUsage:  docker volume COMMAND\n\nManage volumes\n\nCommands:\n  create      Create a volume\n  inspect     Display detailed information on one or more volumes\n  ls          List volumes\n  prune       Remove all unused local volumes\n  rm          Remove one or more volumes\n\nRun 'docker volume COMMAND --help' for more information on a command.\n\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-06",
+      "body_markdown": "docker network コマンドの一覧\n```\n$ docker network --help\n\nUsage:  docker network COMMAND\n\nManage networks\n\nCommands:\n  connect     Connect a container to a network\n  create      Create a network\n  disconnect  Disconnect a container from a network\n  inspect     Display detailed information on one or more networks\n  ls          List networks\n  prune       Remove all unused networks\n  rm          Remove one or more networks\n\nRun 'docker network COMMAND --help' for more information on a command.\n\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "サンプルリポジトリを取得\n```bash\ngit clone https://github.com/docker/getting-started.git\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "https://docs.docker.com/get-started/02_our_app/#get-the-app"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "エラー\nCommand 'docker' not found, but can be installed with:\nsudo apt install docker.io\n\nエラー\nE: Failed to fetch http://archive.ubuntu.com/ubuntu/pool/main/r/runc/runc_1.1.4-0ubuntu1~20.04.1_amd64.deb  404  Not Found [IP: 91.189.91.39 80]\nE: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?\n\nsudo apt-get update\n\nインストール成功したけど、なんかこの後うまく動かない。。",
+      "body_updated_at": "2023-06-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "環境構築についての注意\nwindows10+wsl2\nwindows docker desktopをインストール\nubuntu20.04\n~~windowsのC:\\Users\\aibizフォルダにdockerフォルダを作成~~\n~~vscodeでターミナルはpower shellを使うのが良い~~\n~~vscodeでターミナルはgit bashを使うのが良い~~\npcを複数ユーザーで使用している場合、「docker-users」グループにユーザーの権限付与も忘れずに\n\nhttps://pswork.jp/docker/user-authorization/\n\nこのへんの設定も必要？\nhttps://docs.docker.com/desktop/windows/wsl/\nこの設定をした後、\nVSCodeを起動する。\nUbuntu20.04でWSLに接続する。\n/home/aibizsasaki/docker に移動する\n（つまり~/docker/）\nVSCodeのターミナルでbashを起動してサンプルプロジェクトをgit cloneして\nチュートリアルの内容を実行する\n\nhttp://127.0.0.1:3000/\nにアクセス成功した。",
+      "body_updated_at": "2023-06-16"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "https://qiita.com/pottava/items/452bf80e334bc1fee69a"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "```Dockerfile\n# syntax=docker/dockerfile:1 \nFROM node:18-alpine\nWORKDIR /app\nCOPY . .\nRUN yarn install --production\nCMD [\"node\", \"src/index.js\"]\nEXPOSE 3000\n```\nこのDockerfileは、Node.jsベースのアプリケーションをDockerコンテナ内で実行するための手順を定義しています。\n\n1行目の # syntax=docker/dockerfile:1 は、Dockerfileのバージョンを指定しています。\n\n2行目の FROM node:18-alpine は、Dockerイメージのベースとなるイメージを指定しています。ここでは、Node.jsのバージョン18を実行するためのAlpine Linuxベースのイメージを使用しています。\n\n3行目の WORKDIR /app は、Dockerコンテナ内で作業ディレクトリを/appに設定しています。以降のコマンドはこのディレクトリ内で実行されます。\n\n4行目の COPY . . は、ホストマシンの現在のディレクトリのすべてのファイルとディレクトリを、Dockerコンテナ内の作業ディレクトリにコピーしています。\n\n5行目の RUN yarn install --production は、Dockerコンテナ内でyarn install --productionコマンドを実行しています。これにより、アプリケーションの依存関係をインストールします。--productionフラグは、開発時にのみ必要なパッケージを省略して本番環境で必要なパッケージのみをインストールするためのものです。\n\n6行目の CMD [\"node\", \"src/index.js\"] は、Dockerコンテナが起動されたときに実行されるデフォルトのコマンドを指定しています。この場合、Node.jsの実行環境でsrc/index.jsファイルを実行するように設定しています。\n\n7行目の EXPOSE 3000 は、コンテナ内で公開するポート番号を指定しています。この場合、コンテナ内のアプリケーションがポート3000でリクエストを受け付けることを示しています。\n\nこのDockerfileは、Node.jsアプリケーションをDockerコンテナ内でビルドし、実行するための手順を提供しています。"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "```bash\ndocker image build -t getting-started .\n```\n```bash\ndocker container run -dp 3000:3000 getting-started\n```\nhttp://localhost:3000にアクセスする",
+      "body_updated_at": "2023-06-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "docker hubにサインインして getting-started リポジトリを新規作成する\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "```bash\ndocker image push aibiz20sasaki/getting-started\n```\n→ エラーになる\n",
+      "body_updated_at": "2023-06-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "ローカルのImageの名前を変更する\n```bash\ndocker image tag getting-started aibiz20sasaki/getting-started\n```",
+      "body_updated_at": "2023-06-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-15",
+      "body_markdown": "ボリュームマウント：\nvolumeを作成して、DBのデータなどを永続化する\n```bash\ndocker volume create todo-db\n```\n\n```bash\ndocker container run -dp 3000:3000 --mount type=volume,src=todo-db,target=/etc/todos getting-started\n```\n→エラー\ndocker: Error response from daemon: invalid mount config for type \"volume\": invalid mount path: 'C:/Program Files/Git/etc/todos' mount path must be absolute.\nSee 'docker run --help'.\n\n→コマンドでなく、Deckerデスクトップで操作で、コンテナ実行できた。\nhttps://docs.docker.com/get-started/05_persisting_data/#create-a-volume-and-start-the-container\n\n→このコマンドならOK\n```bash\ndocker container run -dp 3000:3000 --mount type=volume,src=todo-db,target=//etc/todos getting-started\n```\n\nボリュームを使用するときに、Docker はデータをどこに保存しますか?\n```bash\ndocker volume inspect todo-db\n```\n",
+      "body_updated_at": "2023-06-15"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-15",
+      "body_markdown": "バインドマウント：\n例えば、~/docker/getting-started/app で以下のコマンドを実行した場合\n-itオプションは、対話型コンテナセッション\n\n```bash\ndocker run -it --mount type=bind,src=\"$(pwd)\",target=/src ubuntu bash\n```\nsrc=\"$(pwd)\"・・・ホストマシンの現在の作業ディレクトリ（~/docker/getting-started/app）\ntarget=/src・・・コンテナの「/src」ディレクトリに↑を紐付ける\n\n対話型コンテナセッションを終了する場合は、ctrl+D\n",
+      "body_updated_at": "2023-06-15"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-15",
+      "body_markdown": "検証\n```bash\nroot@90b62c3e273c:/# pwd\n/\nroot@90b62c3e273c:/# ls\nbin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  src  srv  sys  tmp  usr  var\nroot@90b62c3e273c:/# cd src\nroot@90b62c3e273c:/src# ls\nDockerfile  package.json  spec  src  yarn.lock\nroot@90b62c3e273c:/src# touch hoge.txt\nroot@90b62c3e273c:/src# \n```\nコンテナの/srcフォルダで hoge.txt を作成すると、\nホストマシンの現在の作業ディレクトリ（~/docker/getting-started/app）にも hoge.txt が作成される\n",
+      "body_updated_at": "2023-06-15"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-15",
+      "body_markdown": "例\n```bash\n docker container run -dp 3000:3000 \\\n    -w /app --mount type=bind,src=\"$(pwd)\",target=/app \\\n    node:18-alpine \\\n    sh -c \"yarn install && yarn run dev\"\n```\n上記はエラー、下記はOK\n```bash\ndocker container run -dp 3000:3000     -w //app --mount type=bind,src=\"$(pwd)\",target=//app     node:18-alpine     sh -c \"yarn install && yarn run dev\"\n```\n\nコマンドの内訳は以下の通りです：\n- -dp 3000:3000 デタッチド（バックグラウンド）モードで実行し、ポートマッピングを作成する。\n- -w /app - コマンドが実行される「作業ディレクトリ」またはカレントディレクトリを設定します。\n- --mount type=bind,src=\"$(pwd)\",target=/app - ホストからコンテナ内の/appディレクトリにカレントディレクトリをバインドマウントする。\n- node:18-alpine - 使用するイメージです。これは、Dockerfileにあるアプリのベースイメージであることに注意してください。\n- sh -c \"yarn install && yarn run dev\" - コマンドです。shを使ってシェルを起動し（alpineにはbashがない）、yarn installを実行してパッケージをインストールし、yarn run devを実行して開発サーバを起動しています。package.jsonを見ると、devスクリプトでnodemonが起動することがわかります。",
+      "body_updated_at": "2023-06-15"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-15",
+      "body_markdown": "ログ確認\n```bash\ndocker logs -f <container-id>\n```\n終了はCtrl+C\n\nnodemon？",
+      "body_updated_at": "2023-06-15"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-15",
+      "body_markdown": "ネットワークを作成\n```bash\ndocker network create todo-app\n```\nMySQL コンテナを起動し、ネットワークに接続します。\nまた、データベースがデータベースの初期化に使用するいくつかの環境変数も定義します\n\n```bash\n docker container run -d \\\n     --network todo-app --network-alias mysql \\\n     -v todo-mysql-data:/var/lib/mysql \\\n     -e MYSQL_ROOT_PASSWORD=secret \\\n     -e MYSQL_DATABASE=todos \\\n     mysql:8.0\n```\n上記のコマンドでtodo-mysql-dataというボリュームがあり、MySQLがデータを保存する/var/lib/mysqlにマウントされていることがわかると思います。\nしかし、docker volume createコマンドを実行したことはありません。\nDockerは、名前付きボリュームを使いたいことを認識し、自動的に作成してくれます。\n\nデータベースが稼働していることを確認するには、データベースに接続し、接続されていることを確認します。\n```bash\ndocker container exec -it <mysql-container-id> mysql -u root -p\n```\nパスワードプロンプトが表示されたら、secret と入力します。\n接続に成功したら、下記コマンでで、「todos」データベースが作成されていることを確認\n```bash\nmysql> show databases;\n```\nMySQL シェルを終了して、マシン上のシェルに戻ります。\n```bash\nmysql> exit\n```\ngetting-started/app ディレクトリに移動して、以下のコマンドをPower Shellで実行\n```bash\ndocker run -dp 3000:3000 `\n   -w /app -v \"$(pwd):/app\" `\n   --network todo-app `\n   -e MYSQL_HOST=mysql `\n   -e MYSQL_USER=root `\n   -e MYSQL_PASSWORD=secret `\n   -e MYSQL_DB=todos `\n   node:18-alpine `\n   sh -c \"yarn install && yarn run dev\"\n```\ngit bashでこれだとエラーになった。\n```bash\n docker container run -dp 3000:3000 \\\n   -w /app -v \"$(pwd):/app\" \\\n   --network todo-app \\\n   -e MYSQL_HOST=mysql \\\n   -e MYSQL_USER=root \\\n   -e MYSQL_PASSWORD=secret \\\n   -e MYSQL_DB=todos \\\n   node:18-alpine \\\n   sh -c \"yarn install && yarn run dev\"\n```\nブラウザでアプリを開き、ToDo リストにいくつかの項目を追加します。\nその後、\nmysql データベースに接続し、項目がデータベースに書き込まれていることを検証します。\nパスワードはsecret\n\n```bash\ndocker exec -it <mysql-container-id> mysql -p todos\n```\n書き込まれている！\n```bash\nmysql> select * from todo_items;\n+--------------------------------------+------+-----------+\n| id                                   | name | completed |\n+--------------------------------------+------+-----------+\n| a53601a3-341e-400c-b861-749d7d7af096 | aaa  |         0 |\n| 194777b7-9de9-4014-b17a-8d8582634961 | bbb  |         0 |\n| b143b0bd-58d6-4d0a-a629-d48c66978f0d | ccc  |         0 |\n+--------------------------------------+------+-----------+\n3 rows in set (0.00 sec)\n```\n",
+      "body_updated_at": "2023-06-16"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-16",
+      "body_markdown": "Docker Compose\n```bash\nservices:\n  app:\n    image: node:18-alpine\n    command: sh -c \"yarn install && yarn run dev\"\n    ports:\n      - 127.0.0.1:3000:3000\n    working_dir: /app\n    volumes:\n      - ./:/app\n    environment:\n      MYSQL_HOST: mysql\n      MYSQL_USER: root\n      MYSQL_PASSWORD: secret\n      MYSQL_DB: todos\n\n  mysql:\n    image: mysql:8.0\n    volumes:\n      - todo-mysql-data:/var/lib/mysql\n    environment:\n      MYSQL_ROOT_PASSWORD: secret\n      MYSQL_DATABASE: todos\n\nvolumes:\n  todo-mysql-data:\n```\n起動する\n```bash\ndocker compose up -d\n```\n終了する\n```bash\ndocker compose down\n```\n",
+      "body_updated_at": "2023-06-16"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-22",
+      "body_markdown": "dockerでwordpressを実行する方法\nhttps://github.com/docker/awesome-compose/tree/master/official-documentation-samples/wordpress/\nhttps://docs.docker.jp/compose/wordpress.html\nhttps://docs.docker.com/samples/wordpress/",
+      "body_updated_at": "2023-06-22"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-22",
+      "body_markdown": "docker composeのサンプルいろいろ\nhttps://docs.docker.com/samples/\nhttps://github.com/docker/awesome-compose/tree/master"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-23",
+      "body_markdown": "起動中のコンテナの中に入って確認するには、\n```bash\ndocker ps\n```\nで起動中のコンテナIDを調べて\n```bash\ndocker container exec -it ＜コンテナID＞ bash\n```\nコンテナの中から出るには\n```bash\nexit\n```\n",
+      "body_updated_at": "2023-06-23"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-27",
+      "body_markdown": "コンテナ内のファイルをホストPCへコピー\n```bash\ndocker cp [コンテナID]:[コピーするファイルパス] [コピー先のファイルパス]\n// docker cp ************:/usr/local/test.csv /Desktop\n```\n\nホストPCのファイルをコンテナ内へコピー\n```bash\n$ docker cp [コピーするファイルパス] ************:[コピー先のファイルパス]\n// docker cp /Desktop/test.csv ************:/usr/local\n```\n",
+      "body_updated_at": "2023-06-27"
+    }
+  ]
+}

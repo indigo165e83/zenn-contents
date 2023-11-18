@@ -1,0 +1,50 @@
+{
+  "title": "Next.jsバックエンド",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-23",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-23",
+      "body_markdown": "リポジトリはこちらです。\nhttps://github.com/ai-biz20-sasaki/nextjs-backend",
+      "body_updated_at": "2023-06-23"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-23",
+      "body_markdown": "下記を参考に、Next.jsとPrismaを使ってバックエンドを構築してみます。\nhttps://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql",
+      "body_updated_at": "2023-06-23"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-23",
+      "body_markdown": "prismaをインストールして、初期化します。\n```bash\nnpm install prisma\n```\n```bash\nnpx prisma init\n```\n",
+      "body_updated_at": "2023-06-23"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-23",
+      "body_markdown": "以下を参考にDBに接続してみます。\nhttps://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/connect-your-database-typescript-postgresql\n\nDBはMysql（mariadb）を使います。\n以下を追加。\n```Prisma:schema.prisma\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n```\n\n.envに以下を追加\n```properties:.env\nDATABASE_URL=\"mysql://root:pass@localhost:3306/nextbe01\"\n```\nDBはdockerコンテナに作ります。\n下記のdocker-compose.yamlを作って、\n\n```bash:docker-compose.yaml\nservices:\n  db:\n    # We use a mariadb image which supports both amd64 & arm64 architecture\n    image: mariadb:10.5-focal\n    # image: mariadb:10.6.4-focal\n    # If you really want to use MySQL, uncomment the following line\n    # image: mysql:8.0.27\n    command: '--default-authentication-plugin=mysql_native_password'\n    volumes:\n      - next-backend-volume:/var/lib/mysql\n    restart: always\n    environment:\n      - MYSQL_ROOT_PASSWORD=pass\n      - MYSQL_DATABASE=nextbe01\n      - MYSQL_USER=root\n      - MYSQL_PASSWORD=pass\n    ports:\n      - 3306:3306\n\nvolumes:\n  next-backend-volume:\n```\n```\ndocker compose up -d\n```\nします。\n",
+      "body_updated_at": "2023-06-23"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-23",
+      "body_markdown": "以下を参考にデータベーススキーマを作成してみます。\nhttps://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/using-prisma-migrate-typescript-postgresql\n\n```Prisma:prisma/schema.prisma\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Post {\n  id        Int      @id @default(autoincrement())\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  title     String   @db.VarChar(255)\n  content   String?\n  published Boolean  @default(false)\n  author    User     @relation(fields: [authorId], references: [id])\n  authorId  Int\n}\n\nmodel Profile {\n  id     Int     @id @default(autoincrement())\n  bio    String?\n  user   User    @relation(fields: [userId], references: [id])\n  userId Int     @unique\n}\n\nmodel User {\n  id      Int      @id @default(autoincrement())\n  email   String   @unique\n  name    String?\n  posts   Post[]\n  profile Profile?\n}\n```\n\nスキーマーを作成したら、以下のコマンドでマイグレートを実行します。\n\n```\nnpx prisma migrate dev --name init\n```\n注意）--name の後の指定は、複数単語を指定する場合、init_all_tablesのようにスネークケースでつなげるのがよい？\n\nマイグレーションファイルが自動生成されます。\nデータベースに 3 つのテーブルが作成されました。\n```sql:prisma/migrations/20230623054612_init/migration.sql\n-- CreateTable\nCREATE TABLE `Post` (\n    `id` INTEGER NOT NULL AUTO_INCREMENT,\n    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),\n    `updatedAt` DATETIME(3) NOT NULL,\n    `title` VARCHAR(255) NOT NULL,\n    `content` VARCHAR(191) NULL,\n    `published` BOOLEAN NOT NULL DEFAULT false,\n    `authorId` INTEGER NOT NULL,\n\n    PRIMARY KEY (`id`)\n) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n-- CreateTable\nCREATE TABLE `Profile` (\n    `id` INTEGER NOT NULL AUTO_INCREMENT,\n    `bio` VARCHAR(191) NULL,\n    `userId` INTEGER NOT NULL,\n\n    UNIQUE INDEX `Profile_userId_key`(`userId`),\n    PRIMARY KEY (`id`)\n) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n-- CreateTable\nCREATE TABLE `User` (\n    `id` INTEGER NOT NULL AUTO_INCREMENT,\n    `email` VARCHAR(191) NOT NULL,\n    `name` VARCHAR(191) NULL,\n\n    UNIQUE INDEX `User_email_key`(`email`),\n    PRIMARY KEY (`id`)\n) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n-- AddForeignKey\nALTER TABLE `Post` ADD CONSTRAINT `Post_authorId_fkey` FOREIGN KEY (`authorId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE `Profile` ADD CONSTRAINT `Profile_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;\n```\n",
+      "body_updated_at": "2023-06-24"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-23",
+      "body_markdown": "Prismaクライアントのインストールする。\nhttps://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/install-prisma-client-typescript-postgresql\n\n```bash\nnpm install @prisma/client\n```",
+      "body_updated_at": "2023-06-23"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-24",
+      "body_markdown": "PrismaのModel名の命名規則はパスカルケースの単数形\nDBのテーブルの命名規則は、小文字の複数形 スネークケースで単語を連結\nこの違いを吸収するには、以下のように @@map してやればよい。\n\nhttps://www.prisma.io/docs/concepts/components/prisma-schema/data-model#mapping-model-names-to-tables-or-collections\n\n```\nmodel User {\n  id      Int      @id @default(autoincrement())\n  email   String   @unique\n  name    String?\n  posts   Post[]\n\n  @@map(\"users\")\n}\n```\n",
+      "body_updated_at": "2023-06-24"
+    }
+  ]
+}

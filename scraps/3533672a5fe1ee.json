@@ -1,0 +1,13 @@
+{
+  "title": "Next.js + Playwrightについての覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-07-16",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-16",
+      "body_markdown": "Playwright公式\nhttps://playwright.dev/docs/intro\n\nNext.js Docs Playwright\nhttps://nextjs-ja-translation-docs.vercel.app/docs/testing#playwright\n\nhttps://github.com/vercel/next.js/tree/canary/examples/with-playwright"
+    }
+  ]
+}

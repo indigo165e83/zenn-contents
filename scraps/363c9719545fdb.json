@@ -1,0 +1,35 @@
+{
+  "title": "「エッセンシャル スクラム」まとめ",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-09-14",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-09-14",
+      "body_markdown": "## クネビンフレームワーク\n- 単純な領域\n- 込み入った領域\n- カオスな領域\n- 複雑な領域\n- 無秩序"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-09-14",
+      "body_markdown": "スクラムは標準化されたプロセスではない。\nスクラムは作業をまとめあげ、管理するための**フレームワーク**"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-09-14",
+      "body_markdown": "スクラム開発は1つ以上のスクラムチームから構成される。\n各チームには3つのスクラム役割がある。\n- プロダクトオーナー\n- スクラムマスター\n- 開発チーム\n\n![](https://storage.googleapis.com/zenn-user-upload/2f73563efcbf-20230914.png)\n\n",
+      "body_updated_at": "2023-09-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-09-14",
+      "body_markdown": "スクラムのアクティビティと作成物\n![](https://storage.googleapis.com/zenn-user-upload/3b602c2c0606-20230914.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-09-15",
+      "body_markdown": "スクラムは高い精度で先を見通すことが難しい問題に適している。\n\n![](https://storage.googleapis.com/zenn-user-upload/5070b1d6fb10-20230915.png)\n",
+      "body_updated_at": "2023-09-15"
+    }
+  ]
+}

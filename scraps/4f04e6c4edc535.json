@@ -1,0 +1,19 @@
+{
+  "title": "設計について覚え書き",
+  "closed": true,
+  "archived": true,
+  "created_at": "2023-06-04",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-04",
+      "body_markdown": "## コンポーネント設計\n### Presentational Component プレゼンテーショナル コンポーネント\n見た目、デザインを実装するコンポーネント\n```TypeScript\n//import './styles.css'\n\ntype ButtonProps = { \n  label: string \n  text: string \n  disabled: boolean \n  onClick: React.MouseEventHandler<HTMLButtonElement>\n}\n\n//ラベルとボタンを表示するコンポーネント\nexport const Button = (props: ButtonProps) => {\n  const { label, text, disabled, onClick } = props\n\n  //propsで渡されたデータを元に見た目を実装する\n  return (\n    <div className =\" button-container\">\n      <span>{ label }</span>\n      <button disabled={ disabled } onClick={ onClick }>\n        { text } \n      </button>\n    </div>\n  )\n}\n\nexport default Button\n```\n\n### Container Component　コンテナ コンポーネント\nビジネスロジックのみを実装するコンポーネント \n```TypeScript\nimport { useState, useCallback } from 'react'\nimport { Button } from './presentational-sample'\n\n//ポップアップを表示するためのフック\nconst usePopup = () => { \n  //与えられたテキストを表示するポップアップを出現させる関数\n  const cb = useCallback(( text: string) => {\n    prompt( text )\n  }, [])\n  \n  return cb\n}\n\ntype CountButtonProps = { \n  label: string\n  maximum: number\n} \n\n//クリックされた回数を表示するボタンを表示するコンポーネント\nexport const CountButton = (props: CountButtonProps) => {\n  const { label, maximum } = props\n  \n  //アラートを表示させるためのフックを使う\n  const displayPopup = usePopup() \n  \n  //カウントを保持する状態を定義する\n  const [count, setCount] = useState(0) \n  \n  //ボタンが押された時の挙動を定義する\n  const onClick = useCallback(() => { \n  //カウントを更新する\n  const newCount = count + 1\n  setCount(newCount)\n\n  if (newCount >= maximum) {\n    // アラートを出す\n    displayPopup(`You've clicked ${ newCount} times `)\n  }\n}, [count, maximum])\n//状態を元に表示に必要なデータを求める\nconst disabled = count >= maximum\nconst text = disabled \n  ? 'Can\\' t click any more'\n  : `You've clicked ${ count} times`\n  // Presentational Componentを返す\n  return (\n    <Button disabled={ disabled } onClick={ onClick } label ={ label } text ={text } />\n  )\n}\n\nexport default CountButton\n```",
+      "body_updated_at": "2023-06-04"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-04",
+      "body_markdown": "## Atomic Design アトミックデザイン\n\n### Atoms\n最小の要素。これ以上分割できない\n例）ボタン、テキスト\n\n### Molecules\n複数のAtomsを組み合わせて構築\n例）ラベル付きのテキストボックス\n\n### Organisms\nMoleculesよりも具体的な要素\n例）入力フォーム\n\n### Templates\nページ全体のレイアウト\n例）ページのレイアウト\n\n### Pages\nページそのもの\n例）ページそのもの\n\n"
+    }
+  ]
+}

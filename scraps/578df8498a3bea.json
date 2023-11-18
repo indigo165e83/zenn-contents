@@ -1,0 +1,87 @@
+{
+  "title": "JavaScriptについての覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-07-07",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "改訂3版JavaScript本格入門 \nhttps://wings.msn.to/index.php/-/A-03/978-4-297-13288-0/\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## ECMAScript（エクマスクリプト）\n標準化団体ECMA International によって標準化されたJavaScriptのこと。\n現在、モダンなブラウザで動作するJavaScriptは、基本的にECMAScriptの仕様に基づいて実装されている。\n\nJavaScriptを学ぶとは、ECMAScriptを学ぶこと。"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "ECMAScriptのバージョン\n![](https://storage.googleapis.com/zenn-user-upload/37ba268128a4-20230707.png)\n\n特に大きな更新は、ES2015（ES6）\nES2015構文を利用するかどうかによって、生産性は大きく変化します。\nこのことから、ES2015以降のECMAScript（JavaScript）を、特にモダンJavaScriptと呼ぶこともあります。",
+      "body_updated_at": "2023-07-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## ブラウザの対応状況\n### ECMAScript compatibility table（ http://kangax.github.io/compat-table/es2016plus/ ）\n大雑把な機能単位の対応状況を見るなら、ECMAScript compatibility tabale\n\n### MDN（ https://developer.mozilla.org/ja/docs/Web/JavaScript ）\n個々のメソッド（命令）ごとの対応状況を確認するなら ば、MDN の各ページ から「ブラウザーの互換性」 を参照する\n\n",
+      "body_updated_at": "2023-07-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## <script>要素を記述する場所\n\n<script>要素を記述する場所は、大きく以下のように分類できます。\n（1）<body>要素の配下（任意の位置）<script>要素での処理結果を、ページに直接出力するために利用します。昔はよく見かけた書き方ですが、コンテンツとコードとが混在するのは、ページの可読性／保守性の観点からも望ましくありません。現在ではほとんど使われることはありませんし、また、一部の例外を除いては使うべきではありません。\n\n（2）<body>要素の配下（</body>閉じタグの直前）一般的なブラウザーでは、スクリプトの読み込みや実行が完了するまで、以降のコンテンツを描画しません。このため、読み込みや実行に時間がかかるスクリプトは、そのままページ描画の遅れに直結します。そこで、ページ高速化の手法としてページの末尾（</body>の直前）に、<script>要素を配置することがよくおこなわれます。これによって、ページの描画を終えたあと、おもむろにスクリプトを読み込み／実行できるので、見た目の描画速度が改善します。一般的に、JavaScriptによる処理は、ページがすべて準備できてから開始すべきものであるはずなので、これによる弊害もほぼありません。\n\n（3）<head>要素の配下ただし、（2）でまかなえないケースがあります。JavaScriptでは、「関数（Chapter6）を呼び出すための<script>要素よりも、関数定義の<script>要素を先に記述していなければならない」というルールがあるためです（関数の定義、呼び出しが1つの<script>要素にまとまっていても構いません）。たとえば、<body>要素の配下で呼び出す必要があるような関数は、<head>要素の配下で事前に読み込んでおく必要があります。また、スクリプトからスタイルシートを出力するような状況でも、本文の出力に先立って<head>要素の配下で<script>要素を記述すべきです。\n\nまずは（2）を基本とし、それで賄えない場合にだけ（3）を利用する\n",
+      "body_updated_at": "2023-07-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## JavaScriptは大文字／小文字は厳密に区別される",
+      "body_updated_at": "2023-07-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## べからず なコード\n### 複数の文を単一行で書く（非推奨）\n```JavaScript\nconsole.log('こんにちわ、世界！'); console.log('Hello, world!')\n```\n→デバッガーでブレイクポイントを設定できない。\n\n### 変数宣言のべからず\n(1)初期値のない宣言\n(2)複数の宣言を列挙\n(3)var命令による宣言\n(4)let/var命令の省略 →グローバル変数になる ※絶対に避ける！\n",
+      "body_updated_at": "2023-07-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## コメント\nTODO：あとで作業すべき課題\nFIXME：不具合\nOPTIMIZE：最適化すべき点\nREVIEW：レビューすべき点\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## JavaScriptの一般的な命名規則\n- 変数／関数名：キャメルケース　lastName\n　const宣言したものは、キャメルケースで命名する\n- 定数名：大文字のアンダースコア  LAST_NAME\n　円周率や消費税のような一般的に変化する可能性がないもの\n- クラス名：パスカルケース  LastName",
+      "body_updated_at": "2023-07-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "## 関数の書き方\n### function命令\n```JavaScript\nfunction getTriangleArea(base, height) {\n  return base * height / 2;\n};\n```\n\n### 関数リテラル（関数式）\n名前を持たない関数（匿名関数、無名関数）を定義した上で、変数getTriangleAreaに格納\n```JavaScript\nlet getTriangleArea = function(base, height) {\n  return base * height / 2;\n};\n```\n\n### アロー関数\n```JavaScript\nlet getTriangleArea = (base, height) => {\n  return base * height / 2;\n};\n```",
+      "body_updated_at": "2023-07-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "### アロー関数\n```JavaScript\n(引数, ...) => { ...関数の本体... }\n```\n- 関数本体が1文の場合\n{}、return命令を省略できる。\n```JavaScript\nlet getTriangleArea = (base, height) => base * height / 2;\n```\n- 引数が1個の場合\n引数をくくる()を省略できる。\n```JavaScript\nlet getCircleArea = radius => (radius **2) * Math.PI;\n```\n- 引数がない場合\n引数をくくる()は省略できない。\n```JavaScript\nlet show = () => consple.log('Hello, world!');\n```\n",
+      "body_updated_at": "2023-07-08"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-08",
+      "body_markdown": "## Promise\n非同期処理の状態を管理するためのオブジェクト"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-10",
+      "body_markdown": "## 基本のfetch API\n```JavaScript\n//fetch + then(レスポンス処理) + then(結果値処理) は定番なのでイディオムとして覚えるのがよい\nfetch('https://jsonplaceholder.typicode.com/posts')\n    .then(res => res.json())\n    .then(data => console.log(data))\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-10",
+      "body_markdown": "![](https://storage.googleapis.com/zenn-user-upload/5f71a654dee3-20230710.png)\n![](https://storage.googleapis.com/zenn-user-upload/672535c3efa4-20230710.png)\n\n![](https://storage.googleapis.com/zenn-user-upload/78507fd7e43a-20230710.png)\n",
+      "body_updated_at": "2023-07-10"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "title": "TypeScriptについての覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-02",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "公式ページ\nhttps://www.typescriptlang.org/docs/",
+      "body_updated_at": "2023-06-05"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "TypeScript コンパイラオプション\nhttps://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Compiler%20Options.md"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-05",
+      "body_markdown": "コンパイラオプション PathsとbaseUrlについて\nhttps://github.com/microsoft/TypeScript-Handbook/blob/master/pages/Module%20Resolution.md#path-mapping"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-06",
+      "body_markdown": "TypeScriptの型注釈（Type Annotations）"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "オブジェクト型の書き方\n```TypeScript\nconst obj: {\n  foo: number;\n  bar: string;\n} = {\n  foo: 123,\n  bar: \"Hello, world!\"\n};\n```",
+      "body_updated_at": "2023-06-08"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "型エイリアス（type文で型に別名をつける）\n\n```TypeScript\ntype FooBarObj = {\n  foo: number;\n  bar: string;\n};\n\nconst obj: FooBarObj = {\n  foo: 123,\n  bar: \"Hello, world!\"\n};\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "interface宣言でオブジェクト型を宣言する\n```TypeScript\ninterface FooBarObj {\n  foo: number;\n  bar: string;\n}\n\nconst obj: FooBarObj = {\n  foo: 0,\n  bar: \"string\"\n};\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## ジェネリック型（型引数を持つ型の宣言）\n型引数は、型を定義するときにパラメータをもたせることができる。\n型引数は、type文（またはinterface宣言）で作成するときに宣言する。\n型引数を宣言すると、その型引数は、その宣言の中（type文の=の右側）でだけ有効な型名として扱われる。\n\n## 例1）\n型引数Tを持つUser型を宣言\n```TypeScript\ntype User<T> = {\n  name: string;\n  child: T;\n};\n```\n\n## 例2）\n型引数は複数あっても良い。\n```TypeScript\ntype Family<Parent, Child> = {\n  mother: Parent;\n  father: Parent;\n  child: Child;\n};\n```\n\nジェネリック型（型引数を持つ型の宣言）を使用する。\nFamily<number, string>\nは\nFamily型が持つ2つの型引数Parent, Childにそれぞれ、number, string型を当てはめた型\n```TypeScript\nconst obj: Family<number, string> = {\n  mother: 0,\n  father: 100,\n  child: \"1000\"\n};\n```\n\n### 部分型関係による型引数の制約\n```TypeScript\ntype HasName = {\n  name: string;\n};\ntype Family<Parent extends HasName, Child extends HasName> = {\n  mother: Parent;\n  father: Parent;\n  child: Child;\n};\n```\n\n### オプショナルな型引数\n```TypeScript\ntype Animal = {\n  name: string;\n}\ntype Family<Parent = Animal, Child = Animal> = {\n  mother: Parent;\n  father: Parent;\n  child: Child;\n}\n\n// 通常どおりの使い方\ntype S = Family<string, string>;\n// TはFamily<Animal, Animal>と同じ\ntype T = Family;\n// UはFamily<string, Animal>と同じ\ntype U = Family<string>;\n```",
+      "body_updated_at": "2023-07-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## 関数宣言（function declaration）で関数を作る\n```TypeScript\n//function 関数名(引数: 引数の型, ... ): 戻り値の型 { 処理内容 }\nfunction range(min: number, max: number): number[] {\n  const result = [];\n  for (let i = min; i <= max; i++) {\n    result.push(i);\n  }\n  return result;\n}\n\nconsole.log(range(5, 10)); // [5, 6, 7, 8, 9, 10] と表示される\n```",
+      "body_updated_at": "2023-07-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## 関数式（function expression）で関数を作る\n```TypeScript\ntype Human = {\n  height: number;\n  weight: number;\n};\n\n// function(引数: 引数の型, ... ): 戻り値の型 { 処理内容 }\nconst calcBMI = function(human: Human): number {\n  return human.weight / human.height ** 2;\n};\n\nconst uhyo: Human = { height: 1.84, weight: 72 };\n// 21.266540642722116 と表示される\nconsole.log(calcBMI(uhyo));\n```\n\n```TypeScript\ntype Human = {\n  height: number;\n  weight: number;\n};\n\n//Human型を{ height, weight }に分割代入もできる\nconst calcBMI = function({ height, weight }: Human): number {\n  return weight / height ** 2;\n};\n\nconst uhyo: Human = { height: 1.84, weight: 72 };\n// 21.266540642722116 と表示される\nconsole.log(calcBMI(uhyo));\n```",
+      "body_updated_at": "2023-07-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## アロー関数式（arrow function expression）で関数を作る\n```TypeScript\ntype Human = {\n  height: number;\n  weight: number;\n};\n\n//アロー関数\nconst calcBMI = ({\n  height, weight\n}: Human): number => {\n  return weight / height ** 2;\n};\n\nconst uhyo: Human = { height: 1.84, weight: 72 };\n// 21.266540642722116 と表示される\nconsole.log(calcBMI(uhyo));\n```\n\n### アロー関数の省略形\n式が1文の場合は returnと{}を省略できる\n\n```TypeScript\n//アロー関数の省略形\nconst calcBMI = ({\n  height, weight\n}: Human): number => weight / height ** 2;\n```\n\n### 戻り値にオブジェクトリテラルを使う場合の注意\nオブジェクトリテラルを()で囲む。\n囲まないと、アロー関数の中身を囲み{}と見なされてしまう。\n\n```TypeScript\ntype Human = {\n  height: number;\n  weight: number;\n};\ntype ReturnObj = {\n  bmi: number\n}\n// 正しい書き方\nconst calcBMIObject = ({\n  height, weight\n}: Human): ReturnObj => ({\n  bmi: weight / height ** 2\n});\n\n// これはコンパイルエラーが発生\n// エラー: A function whose declared type is neither 'void' nor 'any' must return a value.\nconst calcBMIObject2 = ({\n  height, weight\n}: Human): ReturnObj => {\n  bmi: weight / height ** 2;\n};\n```\n",
+      "body_updated_at": "2023-07-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## メソッド記法で関数を作る\nこの記法はオブジェクトリテラルの中で使用することができるプロパティを定義する記法の一種です。\n```TypeScript\nconst obj = {\n  // メソッド記法\n  double(num: number): number {\n    return num * 2;\n  },\n  // 通常の記法 + アロー関数\n  double2: (num: number): number => num * 2,\n};\n\nconsole.log(obj.double(100));  // 200 と表示される\nconsole.log(obj.double2(-50)); // -100 と表示される\n```",
+      "body_updated_at": "2023-07-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## 関数型の記法\n\n関数xRepeatの型は？\n (num: number) => string 型\n\n関数型は(引数リスト) => 戻り値の型 という形をとる\n\n```TypeScript\nconst xRepeat = (num: number): string => \"x\".repeat(num);\n```\n引数なし、返り値なしの関数の関数型\n```TypeScript\n() => void\n```\n0個以上任意の数の数値を受け取り、数値を返す関数の型\n```TypeScript\n(...args: number[]) => number\n```\n\ntype文でF型として別名を定義して、関数の型注釈に使用できる。\n```TypeScript\ntype F = (repeatNum: number) => string;\n\nconst xRepeat: F = (num: number): string => \"x\".repeat(num);\n```\n関数の返り値の型注釈は省略できる\n```TypeScript\nconst xRepeat = (num: number) => \"x\".repeat(num);\n```",
+      "body_updated_at": "2023-07-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-09",
+      "body_markdown": "Null 合体演算子 (??)\nこの演算子は左辺が null または undefined の場合に右の値を返し、それ以外の場合に左の値を返します。\nhttps://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-10",
+      "body_markdown": "npm install -d と -D の違いに注意\nhttps://qiita.com/trapple/items/a8a91f9ba8d550c49ccf",
+      "body_updated_at": "2023-06-10"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-12",
+      "body_markdown": "## async関数/await式\n\n## async関数\n返り値は必ずPromiseになる。\n例）get3()関数は「3を結果とするPromise」を返す関数である。\n\n```TypeScript\nasync function get3(): Promise<number> {\n  return 3;\n}\n```\n\n```TypeScript\nconst p = get3();\np.then(num => {\n  console.log(`num is ${num}`);\n});\n```\n## await式\nawait式はasync関数の中で使える構文。\n与えられたPromiseの結果が出るまで待つ\n```TypeScript\nconst sleep = (duration: number) => {\n  return new Promise<void>((resolve) => {\n    setTimeout(resolve, duration);\n  });\n};\n\nasync function get3() {\n  await sleep(1000);\n  return 3;\n}\n\nconst p = get3();\np.then(num => {\n  console.log(`num is ${num}`);\n});\n```\n別の例\n```TypeScript\nconst sleep = (duration: number) => {\n  return new Promise<void>((resolve) => {\n    setTimeout(resolve, duration);\n  });\n};\n\nasync function get3() {\n  console.log(\"get3が呼び出されました\");\n  await sleep(1000);\n  console.log(\"awaitの次に進みました\");\n  return 3;\n}\n\nconsole.log(\"get3を呼び出します\");\nconst p = get3();\np.then((num) => {\n  console.log(`num is ${num}`);\n});\nconsole.log(\"get3を呼び出しました\");\n```\n結果\nget3を呼び出します\nget3が呼び出されました\nget3を呼び出しました\n（1秒後）\nawaitの次に進みました\nnum is 3\n\n別の例\n```TypeScript\nconst sleep = (duration: number) => {\n  return new Promise<void>((resolve) => {\n    setTimeout(resolve, duration);\n  })\n};\n\nasync function get3() {\n  await sleep(1000);\n  return 3;\n}\n\nasync function main() {\n  const num1 = await get3();\n  const num2 = await get3();\n  const num3 = await get3();\n  return num1 + num2 + num3;\n}\n\nmain().then(result => {\n  console.log(`result is ${result}`);\n});\n```\n### async関数のいろいろな宣言方法\nasync function式\n```TypeScript\nconst main = async function() {\n  const fooContent = await readFile(\"foo.txt\", \"utf8\");\n  // 2倍にしてbar.txtに書き込む\n  await writeFile(\"bar.txt\", fooContent + fooContent);\n  console.log(\"書き込み完了しました\");\n};\n```\nasyncアロー関数式\n```TypeScript\nconst main = async () => {\n  const fooContent = await readFile(\"foo.txt\", \"utf8\");\n  // 2倍にしてbar.txtに書き込む\n  await writeFile(\"bar.txt\", fooContent + fooContent);\n  console.log(\"書き込み完了しました\");\n};\n```\nasyncメソッド記法でのasync関数\n```TypeScript\nconst obj = {\n  // 普通のメソッド\n  normalMethod() {\n    // （略）\n  },\n  // async関数のメソッド\n  async asyncMethod() {\n    // （略）\n  }\n};\n```\n",
+      "body_updated_at": "2023-06-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "ジェネリック関数のバリエーション\n```TypeScript\nconst repeat = function<T>(element: T, length: number): T[] {\n  const result: T[] = [];\n  for (let i = 0; i < length; i++) {\n    result.push(element);\n  }\n  return result;\n}\n```\n```TypeScript\nconst repeat = <T>(element: T, length: number): T[] => {\n  const result: T[] = [];\n  for (let i = 0; i < length; i++) {\n    result.push(element);\n  }\n  return result;\n}\n```\n```TypeScript\nconst utils = {\n  repeat<T>(element: T, length: number): T[] {\n    const result: T[] = [];\n    for (let i = 0; i < length; i++) {\n      result.push(element);\n    }\n    return result;\n  }\n}\n```\n```TypeScript\nconst pair = <Left, Right>(left: Left, right: Right): [Left, Right] => [left, right];\n// pは[string, number]型\nconst p = pair(\"uhyo\", 26);\n```\n```TypeScript\nconst repeat = <T extends {\n  name: string;\n}>(element: T, length: number): T[] => {\n  const result: T[] = [];\n  for (let i = 0; i < length; i++) {\n    result.push(element);\n  }\n  return result;\n}\n\ntype HasNameAndAge = {\n  name: string;\n  age: number;\n}\n\n// これはOK\n// 出力結果:\n// [{\n//   \"name\": \"uhyo\",\n//   \"age\": 26\n// }, {\n//   \"name\": \"uhyo\",\n//   \"age\": 26\n// }, {\n//   \"name\": \"uhyo\",\n//   \"age\": 26\n// }] \nconsole.log(repeat<HasNameAndAge>({\n  name: \"uhyo\",\n  age: 26,\n}, 3));\n// これはコンパイルエラー\n// エラー: Type 'string' does not satisfy the constraint '{ name: string; }'.\nconsole.log(repeat<string>(\"a\", 5));\n```\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "## typeofキーワードで変数の型を得る\n型推論の結果を型として抽出・再利用したい場合にtypeofは効果的。\n特に、ランタイム（すなわち、型ではない）変数宣言から型推論を通じて型を取り出さるというのは非常に協力な機能。\n\n```TypeScript\nconst obj = {\n  foo: 123,\n  bar: \"hi\"\n};\n\ntype T = typeof obj;\n\nconst obj2: T = {\n  foo: -50,\n  bar: \"\"\n};\n```\n",
+      "body_updated_at": "2023-07-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-12",
+      "body_markdown": "## ネストされたオブジェクトについての注意\nhttps://react.dev/learn/updating-objects-in-state\n\n### スプレッド構文を使用したオブジェクトのコピー\n...スプレッド構文は「浅い」ことに注意してください。（シャローコピー）\nつまり、1 レベルの深さまでしかコピーされません。\nhttps://react.dev/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax\n\n### ネストされたオブジェクトの更新\nhttps://react.dev/learn/updating-objects-in-state#updating-a-nested-object\n\n### Immer を使用して簡潔な更新ロジックを作成する\nhttps://react.dev/learn/updating-objects-in-state#write-concise-update-logic-with-immer\n\n## Immer\nhttps://immerjs.github.io/immer/",
+      "body_updated_at": "2023-07-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-12",
+      "body_markdown": "## 部分型関係(subtyping relation)\n\n部分型関係は、\n- ある型をほかの型の代わりに使えるか\n- ある型をほかの型とみなせるか\nという直感的な概念に基づくものである。\n\n### 例1）\n```TypeScript\ntype FooBar = {\n  foo: string;\n  bar: number;\n}\ntype FooBarBaz = {\n  foo: string;\n  bar: number;\n  baz: boolean;\n}\n\nconst obj: FooBarBaz = {\n  foo: \"hi\",\n  bar: 1,\n  baz: false\n};\nconst obj2: FooBar = obj;\n```\nFooBarBaz型は、FooBar型の部分型である。\nつまり、\nFooBarBaz型の値は、FooBar型の値でもある。\nFooBarBaz型は、FooBar型の上位互換。\n1. FooBar型が持つプロパティはすべてFooBarBaz型にも存在する。\n2. 条件1の各プロパティについて、FooBarBaz型におけるそのプロパティの型はFooBar型におけるそのプロパティの型の部分型（または同じ型）である。 \n\n### 例2）\n```TypeScript\ntype Animal = {\n  age: number;\n};\ntype Human = {\n  age: number;\n  name: string;\n}\n```\nHuman型はAnimal型の部分型である。\n\n### 例3)\n```TypeScript\ntype AnimalFamily = {\n  familyName: string;\n  mother: Animal;\n  father: Animal;\n  child: Animal;\n}\ntype HumanFamily = {\n  familyName: string;\n  mother: Human;\n  father: Human;\n  child: Human;\n}\n```\nHumanFamily型はAnimalFamily型の部分型である。\n\n",
+      "body_updated_at": "2023-07-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-12",
+      "body_markdown": "## 配列型の記法\n### T[] で表現\n```TypeScript\nconst arr: number[] = [1, 10, 100];\n\nconst arr2: string[] = [\"123\", \"-456\"];\n```\n### Array<T> で表現\n```TypeScript\nconst arr3: Array<{\n  name: string;\n}> = [\n  { name: \"山田さん\" },\n  { name: \"田中さん\" },\n  { name: \"鈴木さん\" }\n];\n```\n異なる型が混ざった配列の型も表現可能\n```TypeScript\n// (string | number | boolean)[]型\nconst arr4 = [100, \"文字列\", false];\n```\n",
+      "body_updated_at": "2023-07-12"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-14",
+      "body_markdown": "## ジェネリック関数（型引数を持つ関数）\n関数宣言\n```TypeScript\nfunction repeat<T>(element: T, length: number): T[] {\n  const result: T[] = [];\n  for (let i = 0; i < length; i++) {\n    result.push(element);\n  }\n  return result;\n}\n\n// [\"a\", \"a\", \"a\", \"a\", \"a\"] が表示される\nconsole.log(repeat<string>(\"a\", 5)); \n// [123, 123, 123] が表示される\nconsole.log(repeat<number>(123, 3)); \n```\n\n関数式\n```TypeScript\nconst repeat = function<T>(element: T, length: number): T[] {\n  const result: T[] = [];\n  for (let i = 0; i < length; i++) {\n    result.push(element);\n  }\n  return result;\n}\n```\n\nアロー関数式\n```TypeScript\nconst repeat = <T>(element: T, length: number): T[] => {\n  const result: T[] = [];\n  for (let i = 0; i < length; i++) {\n    result.push(element);\n  }\n  return result;\n}\n```\n\nメソッド記法\n```TypeScript\nconst utils = {\n  repeat<T>(element: T, length: number): T[] {\n    const result: T[] = [];\n    for (let i = 0; i < length; i++) {\n      result.push(element);\n    }\n    return result;\n  }\n}\n```\n",
+      "body_updated_at": "2023-07-14"
+    }
+  ]
+}

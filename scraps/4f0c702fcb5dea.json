@@ -1,0 +1,48 @@
+{
+  "title": "Next.jsでデモサイトをpages routerからapp routerへマイグレートの覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-18",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "リポジトリ\nhttps://github.com/ai-biz20-sasaki/nextjs-c2c-demo\n\n公式サイトのマイグレート方法の記載箇所\nhttps://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "next.jsを12→13へバージョンアップ\n```bash\nnpm install next@latest react@latest react-dom@latest\n```\nその後、npm run dev すると下記エラー\n\nServer Error\nError: Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.\nLearn more: https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor\n\nThis error happened while generating the page. Any console logs will be displayed in the terminal window.\n",
+      "body_updated_at": "2023-06-18"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "next.js 13では、<a>子を持つ<Link>が無効になったらしいです。\n以下で自動でコードを修正してくれるっぽい。\n```bash\nnpx @next/codemod@latest new-link .\n```\n\nhttps://nextjs.org/docs/app/building-your-application/upgrading/codemods#remove-a-tags-from-link-components\n\nhttps://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor\n\nnpm run devでサイトが正常に表示されるようになりました。",
+      "body_updated_at": "2023-06-18"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "eslintを最新版へバージョンアップ\n```bash\nnpm install -D eslint-config-next@latest\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "Migrating from pages to app\nhttps://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#migrating-from-pages-to-app\nStep 1: Creating the app directory\nhttps://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#step-1-creating-the-app-directory\n\n├── src\n│   ├── **app <-- ディレクトリを追加！**\n│   ├── components <-- Presentational Components\n│   ├── containers <-- Container Compoments\n│   ├── contexts <-- React Context\n│   ├── pages <-- Next.jsのページ\n│   ├── services <-- Web API Client\n│   ├── themes <-- styled-componentsのテーマ\n│   ├── types <-- 型定義\n│   └── utils <-- 汎用関数",
+      "body_updated_at": "2023-06-18"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "Step 2: Creating a Root Layout\nMigrating _document.js and _app.js\nhttps://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#migrating-_documentjs-and-_appjs\n\n_document.js と _app.js を、src/app/layout.tsx にコピーする\n",
+      "body_updated_at": "2023-06-18"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-18",
+      "body_markdown": "ページの移行、めちゃ大変そう。\n一旦、保留",
+      "body_updated_at": "2023-06-18"
+    }
+  ]
+}

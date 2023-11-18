@@ -1,0 +1,23 @@
+{
+  "title": "認証・認可について整理する",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-05-03",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-03",
+      "body_markdown": "https://dev.classmethod.jp/articles/auth0-access-token-id-token-difference/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-09",
+      "body_markdown": "OAuth 2.0は、ユーザー権限の認可を行うためのプロトコルで、異なる2つのサービス間でユーザー情報などのリソースを共有することを可能にします¹。具体的な例としては、「Googleアカウントを使用してTwitterにサインインする」などがあります¹。\n\nOAuth 2.0の基本的な流れは以下の通りです¹：\n\n1. クライアント（ウェブサイトやモバイルアプリなど）がユーザーに認可要求（Authorization Request）を行います。\n2. ユーザーが認可要求を承認すると、認可グラント（Authorization Grant）がクライアントに返されます。\n3. クライアントが認可サーバーにアクセストークンを要求します。\n4. 認可サーバーは、クライアントの認証と認可グラントを確認した上で、アクセストークンを発行します。\n5. クライアントはアクセストークンを使用してリソースへアクセスします。\n6. リソースサーバーはクライアントにリソースを提供します。\n\nこの仕組みにより、ユーザーは自分の情報を安全に他のサービスと共有することができます。また、開発者はOAuth 2.0を使用することで、ユーザー認証や権限管理の複雑さを軽減することができます¹。ただし、OAuth 2.0は認可（Authorization）を行うものであり、認証（Authentication）ではない点に注意が必要です¹。\n\nなお、OAuth 2.0は技術文書RFC 6749で詳細に定義されています⁴。また、TwitterやGoogleなどはOAuth 2.0を使用するためのAPIを提供しており、開発者は最小限の実装でOAuth 2.0を使ったログインや権限の付与を自分のアプリに実装できます¹。具体的なAPIの例としては、以下のようなものがあります¹：\n\n- Twitter Developer Platform⁸\n- Google Identity⁹\n- Yahoo! Developer[^10^]\n\n以上がOAuth 2.0の基本的な説明となります。もし詳細な情報が必要であれば、各種リソースや公式ドキュメンテーションをご覧いただくことをお勧めします¹²³⁴。それらは、OAuth 2.0の詳細な仕様や実装方法について詳しく説明しています。また、具体的な実装についての質問があれば、お気軽にお問い合わせください。よろしくお願いいたします。\n\nソース: Bing との会話 2023/11/9\n(1) 認証スタンダードOAuth 2.0とは？その仕組みとフローを徹底解説 .... https://ugo.tokyo/about-oauth2/.\n(2) 一番分かりやすい OAuth の説明 #OAuth - Qiita. https://qiita.com/TakahikoKawasaki/items/e37caf50776e00e733be.\n(3) undefined. https://developer.twitter.com/en/docs/authentication/oauth-2-0.\n(4) undefined. https://developers.google.com/identity/protocols/oauth2.\n(5) undefined. https://developer.yahoo.com/oauth2/guide.\n(6) OAuth 2.0の代表的な利用パターンを仕様から理解しよう - Build .... https://www.buildinsider.net/enterprise/openid/oauth20.\n(7) OAuth2.0の流れをまとめてみる - Zenn. https://zenn.dev/mryhryki/articles/2020-12-28-oauth2-flow.\n(8) undefined. https://tex2e.github.io/rfc-translater/html/rfc5849.html.\n(9) undefined. https://tex2e.github.io/rfc-translater/html/rfc6749.html.\n(10) undefined. https://tex2e.github.io/rfc-translater/html/rfc6750.html."
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-09",
+      "body_markdown": "OAuth 2.0の基本的な流れをMermaidで表現したシーケンス図は以下のようになります：\n\n```mermaid\nsequenceDiagram\n    participant User as ユーザー\n    participant Client as クライアント\n    participant AuthServer as 認可サーバー\n    participant ResourceServer as リソースサーバー\n\n    Client->>User: 認可要求\n    User->>Client: 認可グラント\n    Client->>AuthServer: アクセストークン要求\n    AuthServer->>Client: アクセストークン\n    Client->>ResourceServer: リソースへのアクセス要求\n    ResourceServer->>Client: リソースの提供\n```\n\nこの図では、各参加者（ユーザー、クライアント、認可サーバー、リソースサーバー）がOAuth 2.0のプロセスの中でどのように相互作用するかを示しています。具体的には、クライアントがユーザーから認可グラントを受け取り、それを使用して認可サーバーからアクセストークンを取得し、そのトークンを使用してリソースサーバーからリソースを取得するという流れを示しています。\n\nこの図は、OAuth 2.0の基本的な流れを視覚的に理解するのに役立つでしょう。ただし、実際のOAuth 2.0の実装では、さまざまなセキュリティ対策やエラーハンドリングなど、この図には含まれていない多くの詳細が存在します。そのため、具体的な実装を行う際には、公式の技術文書や各種リソースを参照することをお勧めします。。それらは、OAuth 2.0の詳細な仕様や実装方法について詳しく説明しています。また、具体的な実装についての質問があれば、お気軽にお問い合わせください。よろしくお願いいたします。"
+    }
+  ]
+}

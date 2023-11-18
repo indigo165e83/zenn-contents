@@ -1,0 +1,130 @@
+{
+  "title": "React,Next.jsの覚え書き（設計手法なども含む）",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-02",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "コンポーネント名はパスカルケース（先頭は大文字）にする\n〇：Text、Message\n×：text、message",
+      "body_updated_at": "2023-06-02"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-03",
+      "body_markdown": "Reactフックについて\nhttps://ja.legacy.reactjs.org/docs/hooks-intro.html",
+      "body_updated_at": "2023-06-03"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-03",
+      "body_markdown": "## Next.jsの4つのレンダリング手法\n- 静的サイト生成（SSG：Static Site Generation）\n  - getStaticProps、getStaticPaths\n- クライアントサイドレンダリング（CSR：Client Side Rendering）\n- サーバーサイドレンダリング（SSR：Server Side Rendering）\n  - getServerSideProps\n- インクリメンタル静的再生性（ISR：Incremental Static Regeneration）",
+      "body_updated_at": "2023-06-03"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-05",
+      "body_markdown": "Next.jsでstyled-componentsをインストール\n```bash\nnpm install styled-components@latest\nnpm install --save-dev @types/styled-components\n```\n注意\n```bash\nnpm install styled-components\n```\nだとエラー\nnpm ERR! Cannot read properties of null (reading 'edgesOut')",
+      "body_updated_at": "2023-06-05"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-05",
+      "body_markdown": "ESLint（リントツール）とPrettier（フォーマッター）関連のライブラリ\n- eslint\n- prettier\n- typescript-eslint\n- @typescript-eslint/eslint-plugin\n- @typescript-eslint/parser\n- eslint-plugin-prettier\n- eslint-plugin-react\n- eslint-plugin-react-hooks\n- eslint-plugin-import\n",
+      "body_updated_at": "2023-06-06"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-06",
+      "body_markdown": "storybookのインストール\n```bash\nnpx storybook@latest init\n```\nhttps://storybook.js.org/docs/react/get-started/install"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-06",
+      "body_markdown": "storybook関連のライブラリ\n- @storybook/addon-postcss\n- tsconfig-paths-webpack-plugin\n- @babel/ plugin-proposal-class-properties\n- @babel/ plugin-proposal-private-methods\n- @babel/ plugin-proposal-private-property-in-object\n- tsconfig-paths-webpack-plugin\n- @mdx-js/react\n",
+      "body_updated_at": "2023-06-06"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-06",
+      "body_markdown": "storybookを起動する\n```bash\nnpm run storybook\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-06",
+      "body_markdown": "マテリアルUI系のインストール\n@mui/material\n@mui/icons-material\n@emotion/react\n@emotion/styled"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "テスト環境構築\nnpm install --save-dev @testing-library/jest-dom @testing-library/react jest jest-environment-jsdom "
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "2種類のルーター\nApp Router（新しい、推奨）\nPage Router（古い）\n\nFrom Pages to App\n\nhttps://nextjs.org/docs/pages/building-your-application/upgrading/app-router-migration",
+      "body_updated_at": "2023-06-08"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "console.logが2回表示される？\nhttps://react.dev/reference/react/StrictMode"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "Reactのインストール\nhttps://react.dev/learn/start-a-new-react-project\n```bash\nnpx create-next-app\n```\n\nnext.jsのインストール\nhttps://nextjs.org/docs/getting-started/installation\n```bash\nnpx create-next-app@latest\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## コンポーネント設計\n### Presentational Component プレゼンテーショナル コンポーネント\n見た目、デザインを実装するコンポーネント\n```TypeScript\n//import './styles.css'\n\ntype ButtonProps = { \n  label: string \n  text: string \n  disabled: boolean \n  onClick: React.MouseEventHandler<HTMLButtonElement>\n}\n\n//ラベルとボタンを表示するコンポーネント\nexport const Button = (props: ButtonProps) => {\n  const { label, text, disabled, onClick } = props\n\n  //propsで渡されたデータを元に見た目を実装する\n  return (\n    <div className =\" button-container\">\n      <span>{ label }</span>\n      <button disabled={ disabled } onClick={ onClick }>\n        { text } \n      </button>\n    </div>\n  )\n}\n\nexport default Button\n```\n\n### Container Component　コンテナ コンポーネント\nビジネスロジックのみを実装するコンポーネント \n```TypeScript\nimport { useState, useCallback } from 'react'\nimport { Button } from './presentational-sample'\n\n//ポップアップを表示するためのフック\nconst usePopup = () => { \n  //与えられたテキストを表示するポップアップを出現させる関数\n  const cb = useCallback(( text: string) => {\n    prompt( text )\n  }, [])\n  \n  return cb\n}\n\ntype CountButtonProps = { \n  label: string\n  maximum: number\n} \n\n//クリックされた回数を表示するボタンを表示するコンポーネント\nexport const CountButton = (props: CountButtonProps) => {\n  const { label, maximum } = props\n  \n  //アラートを表示させるためのフックを使う\n  const displayPopup = usePopup() \n  \n  //カウントを保持する状態を定義する\n  const [count, setCount] = useState(0) \n  \n  //ボタンが押された時の挙動を定義する\n  const onClick = useCallback(() => { \n  //カウントを更新する\n  const newCount = count + 1\n  setCount(newCount)\n\n  if (newCount >= maximum) {\n    // アラートを出す\n    displayPopup(`You've clicked ${ newCount} times `)\n  }\n}, [count, maximum])\n//状態を元に表示に必要なデータを求める\nconst disabled = count >= maximum\nconst text = disabled \n  ? 'Can\\' t click any more'\n  : `You've clicked ${ count} times`\n  // Presentational Componentを返す\n  return (\n    <Button disabled={ disabled } onClick={ onClick } label ={ label } text ={text } />\n  )\n}\n\nexport default CountButton\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## Atomic Design アトミックデザイン\n\n### Atoms\n最小の要素。これ以上分割できない\n例）ボタン、テキスト\n\n### Molecules\n複数のAtomsを組み合わせて構築\n例）ラベル付きのテキストボックス\n\n### Organisms\nMoleculesよりも具体的な要素\n例）入力フォーム\n\n### Templates\nページ全体のレイアウト\n例）ページのレイアウト\n\n### Pages\nページそのもの\n例）ページそのもの\n\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "## サーバーコンポーネントとクライアントコンポーネントについて\nhttps://nextjs.org/docs/getting-started/react-essentials\n\n> サーバー コンポーネントとクライアント コンポーネントの決定を簡素化するために、クライアント コンポーネントの使用例が決まるまではサーバー コンポーネント (appディレクトリ内のデフォルト) を使用することをお勧めします。\n\nhttps://nextjs.org/docs/getting-started/react-essentials\n\n### 「クライアントを使用する」ディレクティブ\n> 指令\"use client\"_は、サーバー コンポーネント モジュール グラフとクライアント コンポーネント モジュール グラフの間の境界を宣言するための規則です。\n\nhttps://nextjs.org/docs/getting-started/react-essentials#the-use-client-directive",
+      "body_updated_at": "2023-06-08"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-09",
+      "body_markdown": "Reactでは、\nイベントを表すpropに**onSomething**、\nイベントを処理する関数定義に**handleSomething**\nという名前を使うのが一般的です。\nhttps://react.dev/learn/tutorial-tic-tac-toe#completing-the-game",
+      "body_updated_at": "2023-06-09"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-11",
+      "body_markdown": "やっぱり公式はおさえておかないと\nhttps://react.dev/learn/adding-interactivity",
+      "body_updated_at": "2023-06-11"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-13",
+      "body_markdown": "pops\nuseState\nContext"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-14",
+      "body_markdown": "API router\n\nhttps://nextjs.org/docs/app/building-your-application/routing/router-handlers\n\nhttps://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#api-routes",
+      "body_updated_at": "2023-06-14"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-19",
+      "body_markdown": "Next.jsでフォントを変更する方法\nhttps://nextjs.org/docs/app/building-your-application/optimizing/fonts"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-29",
+      "body_markdown": "テクニック 即時関数の中でif文を実行する\n\n```jsx\n        <div>\n        {\n          //即時関数の中でif文を実行する\n          (()=> {\n            if( currentPos === 'main' ) {\n              return (<Main />) \n            } else if( currentPos === 'fontsize' ) {\n              return (<Fontsize />)\n            } else {\n              return (\"コンポーネントがない！\")\n            }\n          })()\n        }\n        </div>\n\n```",
+      "body_updated_at": "2023-06-29"
+    }
+  ]
+}

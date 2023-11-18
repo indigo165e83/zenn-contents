@@ -1,0 +1,13 @@
+{
+  "title": "linux cd ~ と cd / の違い",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-05-20",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-20",
+      "body_markdown": "```\ncd ~\npwd\n/home/ユーザー名　・・・ホームディレクトリに移動\n```\n```\ncd /\npwd\n/　　・・・ルートディレクトリに移動\n```\n"
+    }
+  ]
+}

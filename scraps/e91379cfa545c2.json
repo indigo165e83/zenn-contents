@@ -1,0 +1,13 @@
+{
+  "title": "AWS Route53+ACM+CloudFront+S3 で静的Webサイト構築",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-05-04",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-10",
+      "body_markdown": "https://pages.awscloud.com/JAPAN-event-OE-Hands-on-for-Beginners-StaticWebsiteHosting-2022-confirmation_254.html"
+    }
+  ]
+}

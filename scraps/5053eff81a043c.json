@@ -1,0 +1,47 @@
+{
+  "title": "Next.jsユニットテストについての覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-19",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-19",
+      "body_markdown": "リサーチした結果、Jestがよさそう。\nhttps://qiita.com/suzu1997/items/e4ee2fc1f52fbf505481#nextjs%E3%81%A7%E3%82%88%E3%81%8F%E4%BD%BF%E7%94%A8%E3%81%95%E3%82%8C%E3%82%8B%E3%83%86%E3%82%B9%E3%83%88%E3%83%84%E3%83%BC%E3%83%AB\n\nhttps://nextjs-ja-translation-docs.vercel.app/docs/testing\n\nhttps://ja.legacy.reactjs.org/docs/testing.html",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "Jest公式\nhttps://jestjs.io/ja/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "ここに書かれているパッケージをインストールする。\n\n\n```bash\nnpm install --save-dev jest @testing-library/react @testing-library/jest-dom\n```\n\nhttps://nextjs-ja-translation-docs.vercel.app/docs/testing#jest-%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B-rust-%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%A9%E3%82%92%E5%88%A9%E7%94%A8\n\nこのNext.js公式のJestについての記載。\n最新のNext.js 13にして、jest.config.jsを追加する。jest.config.jsの内容\nhttps://nextjs.org/docs/architecture/nextjs-compiler#jest\n\nこのNext.js公式のJestについての記載。こっちはPage Routerの場合\nhttps://nextjs.org/docs/pages/building-your-application/optimizing/testing#setting-up-jest-with-the-rust-compiler\n\nこの記事では、\"@types/jest\" もインストールしているので、まねる。\nhttps://zenn.dev/shootacean/articles/how-to-set-up-jest-in-a-nextjs-project#jest%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B\n\n結局、こうした。\n```JavaScript:jest.config.js\nconst nextJest = require('next/jest')\n \n// Providing the path to your Next.js app which will enable loading next.config.js and .env files\nconst createJestConfig = nextJest({ dir: './' })\n \n// Any custom config you want to pass to Jest\nconst customJestConfig = {\n  //下記のエラーになるのでコメントアウト\n  //  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],\n\n  //Module <rootDir>/jest.setup.js in the setupFilesAfterEnv option was not found.\n  //<rootDir> is: /home/aibizsasaki/nextjs/whiteboard\n  //\n  //Configuration Documentation:\n  //https://jestjs.io/docs/configuration\n}\n \n// createJestConfig is exported in this way to ensure that next/jest can load the Next.js configuration, which is async\nmodule.exports = createJestConfig(customJestConfig)\n```\n",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "テストスクリプトを書いてみた。\n```TypeScript:header.test.ts\nimport React from 'react';\nimport { render } from '@testing-library/react';\nimport Header from './header';\n\ndescribe('Header component', () => {\n  test('renders correctly', () => {\n    const { getByText } = render(<Header />);\n\n    // 指定された要素とクラス名が存在するかをアサーションします\n    expect(getByText('Whiteboard')).toBeInTheDocument();\n    expect(getByText('Whiteboard')).toHaveClass('text-2xl', 'font-bold');\n  });\n});\n```\nエラー\n```\n      × Expression expected\n        ╭─[/home/aibizsasaki/nextjs/whiteboard/src/components/header.test.ts:4:1]\n      4 │ \n      5 │ describe('Header component', () => {\n      6 │   test('renders correctly', () => {\n      7 │     const { getByText } = render(<Header />);\n        ·                                          ─\n      8 │ \n      9 │     // 指定された要素とクラス名が存在するかをアサーションします\n     10 │     expect(getByText('Whiteboard')).toBeInTheDocument();\n```\nテストスクリプトのファイル名を、.tsx に変えた。\nheader.test.tsx\n上記のエラーは解消された。\n別のエラーが発生。\n\n```\n  ● Header component › renders correctly\n\n    The error below may be caused by using the wrong test environment, see https://jestjs.io/docs/configuration#testenvironment-string.\n    Consider using the \"jsdom\" test environment.\n    \n    ReferenceError: document is not defined\n```\nこの記事を参考に、header.test.tsx の先頭に、\n```\n/**\n * @jest-environment jsdom\n */\n```\nを追記してみた。\nhttps://qiita.com/mame_daifuku/items/79b6a5a1514a3f067e1a\n\n別のエラー\n```\n    ● Validation Error:\n    \n      Test environment jest-environment-jsdom cannot be found. Make sure the testEnvironment configuration option points to an existing node module.\n    \n      Configuration Documentation:\n      https://jestjs.io/docs/configuration\n    \n\n    As of Jest 28 \"jest-environment-jsdom\" is no longer shipped by default, make sure to install it separately.\n```\njest-environment-jsdom のインストールが必要？\nインストールしてみる。\n```bash\nnpm install --save-dev jest-environment-jsdom\n```\nhttps://zenn.dev/keita_hino/articles/488d31e8c4a240\n\n別のエラー\n```\n  ● Header component › renders correctly\n\n    TypeError: expect(...).toBeInTheDocument is not a function\n```\n\nheader.test.tsx に以下のimport文の追加が必要\n```TypeScript:header.test.tsx\nimport '@testing-library/jest-dom'\n```\n\nhttps://stackoverflow.com/questions/56547215/react-testing-library-why-is-tobeinthedocument-not-a-function",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "最終的なテストスクリプトはこうなった。\n```TypeScript:header.test.tsx\n/**\n * @jest-environment jsdom\n */\nimport React from 'react';\nimport { render } from '@testing-library/react';\nimport Header from './header';\nimport '@testing-library/jest-dom'\n\ndescribe('Header component', () => {\n  test('renders correctly', () => {\n    const { getByText } = render(<Header />);\n\n    // 指定された要素とクラス名が存在するかをアサーションします\n    expect(getByText('Whiteboard')).toBeInTheDocument();\n    expect(getByText('Whiteboard')).toHaveClass('text-2xl', 'font-bold');\n  });\n});\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "Next.jsにJestをインストールする\nhttps://nextjs.org/docs/pages/building-your-application/optimizing/testing#setting-up-jest-with-the-rust-compiler\n\n```TypeScript\nnpm install --save-dev jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom\n```\n\n```TypeScript:jest.config.js\nconst nextJest = require('next/jest')\n\nconst createJestConfig = nextJest({\n  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment\n  dir: './',\n})\n\n// Add any custom config to be passed to Jest\nconst customJestConfig = {\n  //setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],\n  moduleDirectories: ['node_modules', '<rootDir>/'],\n  testEnvironment: 'jest-environment-jsdom',\n}\n\n// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async\nmodule.exports = createJestConfig(customJestConfig)\n```\n```TypeScript:package.json\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\",\n    \"start\": \"next start\",\n    \"lint\": \"next lint\",\n    \"test\": \"jest\"　←コレを追加\n  },\n```\nルートに以下のフォルダを作成する\n```\n__tests__ \n```\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-07",
+      "body_markdown": "ES Modules と CommonJS\nhttps://blog.cybozu.io/entry/2020/10/06/170000",
+      "body_updated_at": "2023-07-07"
+    }
+  ]
+}

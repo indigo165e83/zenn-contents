@@ -1,0 +1,93 @@
+{
+  "title": "Next.js 13 アプリケーションを AWS Amplifyで簡単にデプロイができました",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-20",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "https://aws.amazon.com/jp/blogs/news/amplify-next-js-13/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "環境：\nwindows WSL2 Ubuntu-20.04\nnode：v20.0.0\nnoxt.js：13.4.6\n\nNext.js 13でプロジェクトを作成し、Githubにリポジトリをpush\nhttps://github.com/ai-biz20-sasaki/whiteboard"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "awsにログインして、AWS Amplifyを表示する。\n使用を開始する\nAmplifyホスティング\n使用を開始するボタンを押す。\n\n![](https://storage.googleapis.com/zenn-user-upload/c209e01dcc4b-20230620.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "Amplify ホスティングの開始方法\nGitHubを選択する\n![](https://storage.googleapis.com/zenn-user-upload/152e43f5f0be-20230620.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "リポジトリブランチの追加\nリポジトリとブランチを選択する。\n![](https://storage.googleapis.com/zenn-user-upload/f5725fa0451a-20230620.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "ビルドの設定\nデフォルトのまま\n![](https://storage.googleapis.com/zenn-user-upload/6aeb8d0e8644-20230620.png)\n![](https://storage.googleapis.com/zenn-user-upload/604cd33ff056-20230620.png)\n\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "確認\n保存してデプロイ\n![](https://storage.googleapis.com/zenn-user-upload/522f4a4e5ad1-20230620.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "デプロイが成功すると、Amplify コンソールのアプリのページに移動します。\n数分待ちます。\nプロビジョン→構築→デプロイ のすべてにチェックマークがついたら完了です。\n![](https://storage.googleapis.com/zenn-user-upload/1eafe9a0ae5d-20230620.png)\n\n\n",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "左下のウィンドウの絵の下に表示されているリンクをクリックすると、デプロイしたアプリが表示されます。\n![](https://storage.googleapis.com/zenn-user-upload/c21cb236ad76-20230620.png)\n\n![](https://storage.googleapis.com/zenn-user-upload/bce47f574830-20230620.png)\n\n",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "ドメイン名をカスタムドメインに変更します。\nhttps://docs.aws.amazon.com/amplify/latest/userguide/to-add-a-custom-domain-managed-by-amazon-route-53.html\nhttps://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "Amplify コンソール画面で\n左ペインで「ドメインの管理」を選択\n画面右上の「ドメインを追加」を押す\n![](https://storage.googleapis.com/zenn-user-upload/a0516b0543eb-20230620.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "ドメインを選択して、「ドメインを設定」を押す\n![](https://storage.googleapis.com/zenn-user-upload/c3cf572b5e32-20230620.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "サブドメインの設定を行い、画面右下の保存ボタンを押す。\n![](https://storage.googleapis.com/zenn-user-upload/ba8df7be6b5f-20230620.png)\n\n",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "数分待ちます。\n下記のような画面が表示されます。\n![](https://storage.googleapis.com/zenn-user-upload/57796f112dc4-20230620.png)\n",
+      "body_updated_at": "2023-06-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "カスタムドメイン欄に記載されたURLにアクセスします。\nhttps://whiteboard.aislaboratory.com/\nアプリが表示されました。\n![](https://storage.googleapis.com/zenn-user-upload/ff5c934511df-20230620.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-20",
+      "body_markdown": "（Route 53に _914c CNAMEレコードが追加されている？）"
+    }
+  ]
+}

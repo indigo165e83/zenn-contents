@@ -1,0 +1,13 @@
+{
+  "title": "AWS CLIの覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-26",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-chap-welcome.html\n\nhttps://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html"
+    }
+  ]
+}

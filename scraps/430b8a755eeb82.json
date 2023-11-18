@@ -1,0 +1,92 @@
+{
+  "title": "WordPressカスタマイズの覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-25",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-25",
+      "body_markdown": "## WordPressの.gitignoreファイル\nhttps://github.com/github/gitignore/blob/main/WordPress.gitignore\n\n## アニメーションいろいろ\nhttps://note.com/lottiefiles_jp/n/ne49edb409f0f\n\n## Shortcodes Ultimate\nhttps://hp-clef.com/%E3%83%AF%E3%83%BC%E3%83%89%E3%83%97%E3%83%AC%E3%82%B9%E3%81%A7%E6%96%87%E5%AD%97%E3%82%82%E7%94%BB%E5%83%8F%E3%82%82%E5%8B%95%E3%81%8F%E3%80%82%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7/",
+      "body_updated_at": "2023-09-22"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-25",
+      "body_markdown": "WordPressをカスタマイズする際は、子テーマを作ってカスタマイズするのが一般的らしい。\nhttps://wpdocs.osdn.jp/%E5%AD%90%E3%83%86%E3%83%BC%E3%83%9E\n\n> 子テーマの作り方\n> 子テーマのディレクトリ構造\n> 子テーマは、少なくとも 1つのディレクトリ(子テーマディレクトリ)と、2つのファイル(style.css と functions.php) から構成されます。以下を作成する必要があります。\n> \n> 子テーマディレクトリ\n> style.css\n> functions.php\n> \n> 子テーマを作成する最初のステップは、子テーマディレクトリの作成です。wp-content/themes ディレクトリ下に作成します。子テーマディレクトリの名前には最後に '-child' を付けることが推奨されます(ただし必須ではありません。特に一般に公開する予定のテーマを作成する場合はこの限りではありません)。また、子テーマディレクトリの名前には空白を含めないでください。エラーが発生します。上の画面コピーでは子テーマ「twentyfifteen-child」を作成しています。これは親テーマが「Twenty Fifteen」テーマであることを意味します。\n",
+      "body_updated_at": "2023-06-25"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "## プラグイン\n以下のサイトから検索できる\nhttps://ja.wordpress.org/plugins/\n\n### バックアップ\nBackWPup\nhttps://ja.wordpress.org/plugins/backwpup/\n### フォント\nFonts Plugin | Google Fonts Typography\nhttps://ja.wordpress.org/plugins/olympus-google-fonts/\n\n### データ移行\nAll-in-One WP Migration\nhttps://ja.wordpress.org/plugins/all-in-one-wp-migration/\n\n### デバッグ\nDebug Bar\nhttps://ja.wordpress.org/plugins/debug-bar/\n\n### Sticky Menu\nSticky Menu & Sticky Header\n\n### Theme Check\nテーマのテスト、チェック\nhttp://localhost/xs-wp-company01/wp-admin/plugin-install.php?tab=plugin-information&plugin=theme-check&TB_iframe=true&width=600&height=550",
+      "body_updated_at": "2023-07-05"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-01",
+      "body_markdown": "## WordPressのページの種類\n![](https://storage.googleapis.com/zenn-user-upload/98a1c5775717-20230701.png)\n",
+      "body_updated_at": "2023-09-22"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-02",
+      "body_markdown": "style.cssの変更が反映されないときは、\n- キャッシュクリア\n- style.cssの一番下に書く\nを試してみる。"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-04",
+      "body_markdown": "WordPressのシーケンス\n![](https://storage.googleapis.com/zenn-user-upload/343d12283bff-20230704.png)\n\nhttp://www.warna.info/archives/279/",
+      "body_updated_at": "2023-07-04"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-04",
+      "body_markdown": "WordPress テンプレート階層\n![](https://storage.googleapis.com/zenn-user-upload/45b241a35387-20230704.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-04",
+      "body_markdown": "WordPressのグローバル変数\n![](https://storage.googleapis.com/zenn-user-upload/d560ac83a811-20230704.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-04",
+      "body_markdown": "2種類のフックへの登録処理\n```php\n// フィルターの登録\nadd_filter($tag, $function_to_add, $priority, $accepted_args) \n// アクションの登録\nadd_action($tag, $function_to_add, $priority, $accepted_args)\n```\n![](https://storage.googleapis.com/zenn-user-upload/ca9e53824255-20230704.png)\n",
+      "body_updated_at": "2023-07-04"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-04",
+      "body_markdown": "![](https://storage.googleapis.com/zenn-user-upload/b8f5a1acf3cd-20230704.png)\n![](https://storage.googleapis.com/zenn-user-upload/54602c409ed3-20230704.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-05",
+      "body_markdown": "テンプレートタグ\n- コンテンツ系\n　データベースに登録されているコンテンツを表示する\n　the_content(), get_post_meta(), get_comments(), get_the_author() など\n- インクルード系\n  他のテンプレートパーツをincludeする\n　get_header(), get_sidebar(), get_footer(), get_search_form() など\n- 条件分岐タグ系\n　現在表示されているページが、ホームページかタクソノミーページか管理画面なのかなどを判定する\n　is_home()_is_tax(), is_admin() など\n- タグ出力系\n  メタタグやscriptタグを表示する、コメントフォームやウィジェットなど複雑なHTMLを出力する、CSSデザインのためのclassを出力するなど\n　wp_head(), wp_meta(), wp_footer(), comment_form(), wp_nav_menu(), wp_widget(), body_class(), post_class() など\n\nhttps://digitor.jp/textbook/template-tag/",
+      "body_updated_at": "2023-07-05"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-05",
+      "body_markdown": "メインループの例\n```php\n<?php\nget_header(); //ヘッダーテンプレートのロード\nif ( have_posts() ) : //投稿データがあれば\n  while ( have_posts() ) : //ループ 開始\n    the_post(); //次の投稿をセットアップ\n    ?>\n    <article id=\"post-<?php the_ ID(); //投稿IDの出力\n    ?>\" <?php post_class(); // CSSクラスの出力 ?>>\n      <?php if (is_archive()) : // アーカイブ なら ?>\n        <h1 class=\"entry-title\"><a href=\"<?php \n          the_permalink() //リンク出力\n          ?>\"><?php the_title() //タイトルの出力\n            ?></a></h1>\n      <?php else : ?>\n        <h1 class=\"entry-title\"><?php the_title() ?></h1>\n      <?php endif ?>\n      <div class=\"entry-categories\">[<?php //カテゴリ一覧の出力\n        echo get_the_category_list('][') ?>]</div>\n      <div class=\"entry-content\">\n        <?php the_content() // 本文の出力 ?>\n      </div>\n    </article>\n    <?php endwhile; // ループ終了\nelse : //投稿データが無ければ\n  get_template_part( 'content', 'none' ); //部分テンプレートのロード\nendif; get_sidebar(); //サイドバーテンプレートのロード\nget_footer(); //フッターテンプレートのロード\n```\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-05",
+      "body_markdown": "get_posts()によるサブループの例\n```php\n<ul>\n  <?php $new_arrivals=get_posts( array( // 1.データの検索\n    'posts_per_page' => 10,\n    'post_type' => 'goods',\n  ));\n  foreach ( $new_arrivals as $post ) : //2.データのループ\n    setup_postdata( $post ); //3.投稿データのコンテキストを変更\n    ?>\n    <li><a href=\"<?php the_permalink() ?>\">\n      <?php the_title() ?></a></li>\n    <?php\n  endforeach;\n  wp_reset_postdata(); //4.投稿データのコンテキストをリセット\n  ?>\n</ul>\n```",
+      "body_updated_at": "2023-07-05"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-05",
+      "body_markdown": "WP_Queryによるサブループ\n```php\n<ul>\n  <?php $result=new WP_Query( array( //1.データの検索\n    'posts_per_page' => 10,\n    'post_type' => 'goods',\n  ));\n  while ( $result->have_posts() ) : //2.次の投稿があるか確認\n    $result->the_post(); //3.内部ポインタを進め、投稿データのコンテキストを変更\n  ?>\n  <li><a href=\"<?php the_permalink() ?>\">\n    <?php the_title() ?></a></li>\n  <?php\n  endwhile;\n  wp_reset_postdata(); //4.投稿データのコンテキストをリセット\n  ?>\n</ul>\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-05",
+      "body_markdown": "WordPressのリクエストパラメータ\n![](https://storage.googleapis.com/zenn-user-upload/8bd530059ccd-20230705.png)\n![](https://storage.googleapis.com/zenn-user-upload/936ba61b3819-20230705.png)\n",
+      "body_updated_at": "2023-07-05"
+    }
+  ]
+}

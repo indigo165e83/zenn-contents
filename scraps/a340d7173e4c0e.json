@@ -1,0 +1,20 @@
+{
+  "title": "Windows+dockerでLaravelをexample-appを実行する",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-16",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-16",
+      "body_markdown": "ここに書かれていることを試してみた\nhttps://laravel.com/docs/10.x#getting-started-on-windows",
+      "body_updated_at": "2023-06-16"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-16",
+      "body_markdown": "VSCodeを起動する。\nUbuntu20.04でWSLに接続する。\nVSCodeのターミナルでbashを起動する。\nLaravelフォルダを作成し移動する。\n下記のコマンドを実行する。\n```bash\ncurl -s https://laravel.build/example-app | bash\n```\n5分くらい待つ。\nDocker Desktopにイメージがずらっと作成される。\nLaravel\\example-appに移動する。\n下記のコマンドを実行する。\n```bash\n./vendor/bin/sail up\n```\nexample-appコンテナが作成される。\n下記にアクセスすると、Webアプリが構築されている\nhttp://localhost/",
+      "body_updated_at": "2023-06-16"
+    }
+  ]
+}

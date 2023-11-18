@@ -1,0 +1,214 @@
+{
+  "title": "AWS スケーラブルウェブサイト構築（EC2（MySQL）+ELB+VPC）",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-26",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "参考\nhttps://pages.awscloud.com/JAPAN-event-OE-Hands-on-for-Beginners-Scalable-2022-reg-event.html?trk=aws_introduction_page"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "RDS無料枠\nhttps://aws.amazon.com/jp/rds/free/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "IP CIDR サイダー\nhttps://dev.classmethod.jp/articles/what-is-cidr/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "VPCの作成をします。\n作成したい構成は、以下の通り。\n![](https://storage.googleapis.com/zenn-user-upload/12440fdc7bc1-20230626.png)\n\nAWSコンソールにログインします。\n東京リージョンを選択する。\nVPCサービスを表示\nVPCの作成画面で上記の構成を設定します。\n![](https://storage.googleapis.com/zenn-user-upload/69aef807a5fa-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/f52ad0e37916-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/1248b1756861-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/becb7ae73bdb-20230626.png)\n\nプレビュー\n![](https://storage.googleapis.com/zenn-user-upload/fb6dc42102c9-20230626.png)\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "VPCが作成されました。\n![](https://storage.googleapis.com/zenn-user-upload/fa7cb15b23a7-20230626.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "EC2インスタンスをパブリックサブネット-1aに作成\n![](https://storage.googleapis.com/zenn-user-upload/2c9baebc40d5-20230626.png)\n\nEC2サービス画面を表示し、\nインスタンスを起動ボタンを押します。\n以下の設定をします。\n![](https://storage.googleapis.com/zenn-user-upload/0786f95b690e-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/fa4fd868fea0-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/3631abb51445-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/d03495aaf3c4-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/2bd2e19effb7-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/25b35bf36a3b-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/e5e12c2fb093-20230626.png)\n\n以下はうまく動かないから不要\n![](https://storage.googleapis.com/zenn-user-upload/ddf817356fdd-20230626.png)\n\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ELBを作る\n![](https://storage.googleapis.com/zenn-user-upload/80c8a37989c7-20230626.png)\n\nまず、セキュリティグループを作成する。\n以下の設定をします。\n![](https://storage.googleapis.com/zenn-user-upload/16e0e8cba6e3-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/d604853ab57f-20230626.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ターゲットグループを作成する。\nロードバランサーにEC2インスタンスを紐付ける\nEC2画面の左ペイン\nロードバランシング > ターゲットグループを選択する\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ターゲットグループの設定をする\n![](https://storage.googleapis.com/zenn-user-upload/151fa5b3bb3d-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/0611ea3fa11a-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/3f24db5d2b9e-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/cf389e5a135a-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/216c88261419-20230626.png)\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ターゲットグループが作成される。\n![](https://storage.googleapis.com/zenn-user-upload/6a4fb242e86c-20230626.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ロードバランサーを作る。\nEC2画面の左ペイン\nロードバランシング > ロードバランサーを選択する"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ロードバランサータイプで\nApplication Load Balancer で作成する。\n![](https://storage.googleapis.com/zenn-user-upload/601b2a53d0bd-20230626.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "以下の設定をします。\n![](https://storage.googleapis.com/zenn-user-upload/7aa08008e6d7-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/8c302f722467-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/6633baada8b0-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/7e2929b7f255-20230626.png)\n![](https://storage.googleapis.com/zenn-user-upload/f5313a7fa1ed-20230626.png)\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ロードバランサーが作成されました。\n![](https://storage.googleapis.com/zenn-user-upload/6704c4d0a781-20230626.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "DNS名に記載されたアドレスは後から使います。\n![](https://storage.googleapis.com/zenn-user-upload/8ecac82979aa-20230626.png)\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "EC2にWordPressをインストール\n下記を参考\nhttps://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/hosting-wordpress-aml-2023.html"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "作成したインスタンスにElastic IPアドレスを割り当てました。"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "EC2にアクセスします。\nEC2インスタンス作成時に指定した、\nキーペアの秘密鍵のおいてあるローカルの.sshフォルダに移動\nアクセス権の変更\n```bash\nchmod 400 aws_ssh02.pem\n```\nその後、sshでec2にアクセス\n```\nssh -i \"aws_ssh02.pem\" ec2-user@ec2-35-73-143-1.ap-northeast-1.compute.amazonaws.com\n```\n上記の接続コマンドは、下記の場所で確認できます。\n![](https://storage.googleapis.com/zenn-user-upload/0cef45ff36df-20230626.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "EC2にdockerをインストール\nhttps://densan-hoshigumi.com/aws/amzn2023-docker-install",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "EC2にWordPressをインストール\n下記を参考\nhttps://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/hosting-wordpress-aml-2023.html"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "EC2にsshで接続\n/home/ec2-user\n必要なパッケージをインストール\n```bash\nsudo dnf install wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel -y\n```\n\n結果\n```bash\n105-server php-json php php-devel -y\nLast metadata expiration check: 1:57:04 ago on Mon Jun 26 02:21:55 2023.\nPackage wget-1.21.3-1.amzn2023.0.3.x86_64 is already installed.\nDependencies resolved.\n=============================================================================================\n Package                            Arch   Version                         Repository   Size\n=============================================================================================\nInstalling:\n httpd                              x86_64 2.4.56-1.amzn2023               amazonlinux  48 k\n mariadb105-server                  x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux  10 M\n php8.1                             x86_64 8.1.16-1.amzn2023.0.1           amazonlinux  14 k\n php8.1-devel                       x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 688 k\n php8.1-fpm                         x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 1.8 M\n php8.1-mysqlnd                     x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 151 k\nInstalling dependencies:\n annobin-docs                       noarch 10.93-1.amzn2023.0.1            amazonlinux  92 k\n annobin-plugin-gcc                 x86_64 10.93-1.amzn2023.0.1            amazonlinux 887 k\n apr                                x86_64 1.7.2-2.amzn2023.0.2            amazonlinux 129 k\n apr-util                           x86_64 1.6.3-1.amzn2023.0.1            amazonlinux  98 k\n autoconf                           noarch 2.69-36.amzn2023.0.3            amazonlinux 666 k\n automake                           noarch 1.16.5-9.amzn2023.0.3           amazonlinux 677 k\n cmake-filesystem                   x86_64 3.22.2-1.amzn2023.0.4           amazonlinux  16 k\n cpp                                x86_64 11.3.1-4.amzn2023.0.3           amazonlinux  10 M\n emacs-filesystem                   noarch 1:28.2-3.amzn2023.0.6           amazonlinux 9.5 k\n gc                                 x86_64 8.0.4-5.amzn2023.0.2            amazonlinux 105 k\n gcc                                x86_64 11.3.1-4.amzn2023.0.3           amazonlinux  32 M\n gcc-c++                            x86_64 11.3.1-4.amzn2023.0.3           amazonlinux  12 M\n generic-logos-httpd                noarch 18.0.0-12.amzn2023.0.3          amazonlinux  19 k\n glibc-devel                        x86_64 2.34-52.amzn2023.0.2            amazonlinux  48 k\n glibc-headers-x86                  noarch 2.34-52.amzn2023.0.2            amazonlinux 448 k\n guile22                            x86_64 2.2.7-2.amzn2023.0.2            amazonlinux 6.4 M\n httpd-core                         x86_64 2.4.56-1.amzn2023               amazonlinux 1.4 M\n httpd-filesystem                   noarch 2.4.56-1.amzn2023               amazonlinux  15 k\n httpd-tools                        x86_64 2.4.56-1.amzn2023               amazonlinux  82 k\n kernel-headers                     x86_64 6.1.29-50.88.amzn2023           amazonlinux 1.4 M\n keyutils-libs-devel                x86_64 1.6.3-1.amzn2023                amazonlinux  55 k\n krb5-devel                         x86_64 1.20.1-8.amzn2023.0.2           amazonlinux 136 k\n libbrotli                          x86_64 1.0.9-4.amzn2023.0.2            amazonlinux 315 k\n libcom_err-devel                   x86_64 1.46.5-2.amzn2023.0.2           amazonlinux  17 k\n libkadm5                           x86_64 1.20.1-8.amzn2023.0.2           amazonlinux  81 k\n libmpc                             x86_64 1.2.1-2.amzn2023.0.2            amazonlinux  62 k\n libselinux-devel                   x86_64 3.4-5.amzn2023.0.2              amazonlinux 115 k\n libsepol-devel                     x86_64 3.4-3.amzn2023.0.3              amazonlinux  42 k\n libstdc++-devel                    x86_64 11.3.1-4.amzn2023.0.3           amazonlinux 2.2 M\n libtool                            x86_64 2.4.7-1.amzn2023.0.3            amazonlinux 596 k\n libtool-ltdl                       x86_64 2.4.7-1.amzn2023.0.3            amazonlinux  38 k\n libverto-devel                     x86_64 0.3.2-1.amzn2023.0.2            amazonlinux  15 k\n libxcrypt-devel                    x86_64 4.4.33-7.amzn2023               amazonlinux  32 k\n libxml2-devel                      x86_64 2.10.4-1.amzn2023.0.1           amazonlinux 500 k\n libxslt                            x86_64 1.1.34-5.amzn2023.0.2           amazonlinux 241 k\n m4                                 x86_64 1.4.19-2.amzn2023.0.2           amazonlinux 296 k\n mailcap                            noarch 2.1.49-3.amzn2023.0.3           amazonlinux  33 k\n make                               x86_64 1:4.3-5.amzn2023.0.2            amazonlinux 534 k\n mariadb-connector-c                x86_64 3.1.13-1.amzn2023.0.3           amazonlinux 196 k\n mariadb-connector-c-config         noarch 3.1.13-1.amzn2023.0.3           amazonlinux 9.2 k\n mariadb105                         x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux 1.6 M\n mariadb105-common                  x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux  31 k\n mariadb105-errmsg                  x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux 215 k\n mysql-selinux                      noarch 1.0.4-2.amzn2023.0.3            amazonlinux  36 k\n nginx-filesystem                   noarch 1:1.24.0-1.amzn2023.0.1         amazonlinux 9.0 k\n openssl-devel                      x86_64 1:3.0.8-1.amzn2023.0.2          amazonlinux 3.0 M\n pcre2-devel                        x86_64 10.40-1.amzn2023.0.2            amazonlinux 474 k\n pcre2-utf16                        x86_64 10.40-1.amzn2023.0.2            amazonlinux 217 k\n pcre2-utf32                        x86_64 10.40-1.amzn2023.0.2            amazonlinux 206 k\n perl-B                             x86_64 1.80-477.amzn2023.0.4           amazonlinux 180 k\n perl-DBD-MariaDB                   x86_64 1.22-1.amzn2023.0.4             amazonlinux 153 k\n perl-DBI                           x86_64 1.643-7.amzn2023.0.3            amazonlinux 700 k\n perl-Data-Dumper                   x86_64 2.174-460.amzn2023.0.2          amazonlinux  55 k\n perl-File-Compare                  noarch 1.100.600-477.amzn2023.0.4      amazonlinux  14 k\n perl-File-Copy                     noarch 2.34-477.amzn2023.0.4           amazonlinux  21 k\n perl-File-Find                     noarch 1.37-477.amzn2023.0.4           amazonlinux  26 k\n perl-FileHandle                    noarch 2.03-477.amzn2023.0.4           amazonlinux  16 k\n perl-Math-BigInt                   noarch 1:1.9998.18-458.amzn2023.0.2    amazonlinux 189 k\n perl-Math-Complex                  noarch 1.59-477.amzn2023.0.4           amazonlinux  47 k\n perl-Sys-Hostname                  x86_64 1.23-477.amzn2023.0.4           amazonlinux  18 k\n perl-Thread-Queue                  noarch 3.14-458.amzn2023.0.2           amazonlinux  22 k\n perl-base                          noarch 2.27-477.amzn2023.0.4           amazonlinux  17 k\n perl-threads                       x86_64 1:2.25-458.amzn2023.0.3         amazonlinux  58 k\n perl-threads-shared                x86_64 1.61-458.amzn2023.0.2           amazonlinux  44 k\n php8.1-cli                         x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 3.5 M\n php8.1-common                      x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 676 k\n php8.1-pdo                         x86_64 8.1.16-1.amzn2023.0.1           amazonlinux  88 k\n xz-devel                           x86_64 5.2.5-9.amzn2023.0.2            amazonlinux  53 k\n zlib-devel                         x86_64 1.2.11-33.amzn2023.0.4          amazonlinux  45 k\nInstalling weak dependencies:\n apr-util-openssl                   x86_64 1.6.3-1.amzn2023.0.1            amazonlinux  17 k\n mariadb105-backup                  x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux 6.2 M\n mariadb105-cracklib-password-check x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux  16 k\n mariadb105-gssapi-server           x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux  18 k\n mariadb105-server-utils            x86_64 3:10.5.18-1.amzn2023.0.1        amazonlinux 216 k\n mod_http2                          x86_64 2.0.11-2.amzn2023               amazonlinux 150 k\n mod_lua                            x86_64 2.4.56-1.amzn2023               amazonlinux  62 k\n php8.1-mbstring                    x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 477 k\n php8.1-opcache                     x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 382 k\n php8.1-xml                         x86_64 8.1.16-1.amzn2023.0.1           amazonlinux 146 k\n\nTransaction Summary\n=============================================================================================\nInstall  85 Packages\n```\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "FileZiraでキーペア使って、ec2に接続もできる\n接続先はElasticIPで取得した固定IPを指定\nec2-xxx-xxx-xxx-xxx.ap-northeast-1.compute.amazonaws.com",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "wget コマンドを使って、最新の WordPress インストールパッケージをダウンロードします。次のコマンドを実行すると、最新リリースが必ずダウンロードされます。\n```bash\nwget https://wordpress.org/latest.tar.gz\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "インストールパッケージを解凍します。インストールフォルダは、wordpress という名前のフォルダに解凍されます。\n```bash\ntar -xzf latest.tar.gz\n```",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "MySQL（MariaDB）のもろもろ設定\n\nデータベースおよびウェブサーバーを起動します。\n```bash\nsudo systemctl start mariadb httpd\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "データベースサーバーに root ユーザーとしてログインします。\n```bash\nmysql -u root -p\n```\n\n事前に、\nhttps://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html#securing-maria-db\nステップ 3: データベースサーバーをセキュリティで保護する\nあたりの設定をしておく。\nデフォルトではrootユーザーにパスワードは設定されていないらしいので、\nhttps://my.norton.com/extspa/passwordmanager?path=pwd-gen\nのサイトを使って、安全なパスワードに変更する。\n\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "MySQL データベースのユーザーとパスワードを作成します。\nWordPress インストールは、これらの値を使って、MySQL データベースと通信を行います。\n一意のユーザー名とパスワードを入力して、次のコマンドを入力します。\n```bash\nCREATE USER 'wordpress-user'@'localhost' IDENTIFIED BY 'your_strong_password';\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "データベースを作成します。wordpress-db など、データベースにはわかりやすい名前を使用します。\n```\nCREATE DATABASE `wordpress-db`;\n```\n\nデータベースに対して、以前作成した WordPress ユーザーに対する完全な権限を付与します。\n```\nGRANT ALL PRIVILEGES ON `wordpress-db`.* TO \"wordpress-user\"@\"localhost\";\n```\n\nすべての変更を有効にするため、データベース権限をフラッシュします。\n```\nFLUSH PRIVILEGES;\n```\nmysql クライアントを終了します。\n```\nexit\n```\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "wp-config.phpを設定する。\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "WordPress ファイルを Apache ドキュメントルートの下にコピー\n```\nsudo mkdir /var/www/html/wp-sample01\nsudo cp -r wordpress/* /var/www/html/wp-sample01\n```\n\nhttpd.confの編集\n```\nsudo vim /etc/httpd/conf/httpd.conf\n```",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "ロードバランサーのDNS名+「/wp-sample01」\nにアクセスすると、WordPressのインストール画面が起動していることを確認。\nWordPressのインストールをします。\nhttp://elb-user1-417680977.ap-northeast-1.elb.amazonaws.com/wp-sample01/\n\n（Elastic IPアドレスはいらないか）\n",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": "WordPressのソースコードをGithubで管理したいのでgitをインストール\n```bash\nsudo yum update\nsudo yum install git\ngit version\n```",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-26",
+      "body_markdown": ".gitignoreファイルを作って、wp-config.phpは無視するようにする。\nその後、\nsuto git init\ngit config --global --add safe.directory /var/www/html/wp-sample01\ngit add -A\ngit commit\nリモートリポジトリにpushする。",
+      "body_updated_at": "2023-06-26"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-10",
+      "body_markdown": "### その後、ELBが結構課金がかかっていることが判明したので削除する\n\n```\nElastic Load Balancing\nUSD 18.08\n\nAsia Pacific (Tokyo)\nUSD 18.08\n\nElastic Load Balancing - Application\nUSD 18.08\n$0.008 per used Application load balancer capacity unit-hour (or partial hour)\n0.118 LCU-Hrs\tUSD 0.00\n$0.0243 per Application LoadBalancer-hour (or partial hour)\n744 Hrs\t\n```",
+      "body_updated_at": "2023-11-10"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-10",
+      "body_markdown": "AWSのElastic Load Balancer (ELB)の料金が発生しないようにするためには、基本的にはELBを削除する必要があります²。以下に、ELBを削除する手順を説明します²:\n\n1. Amazon EC2 コンソール ( [6](https://console.aws.amazon.com/ec2/%29) を開きます。\n2. ナビゲーションペインで、 [ ロードバランサー] を選択します。\n3. ロードバランサーを選択して [アクション] 、 [ロードバランサーの削除] を選択します。\n4. 確認を求められたら、「 confirm 」と入力し、 [ 削除] を選択します。\n\nただし、以下の点に注意してください²:\n\n- ロードバランサーが削除されると、ロードバランサーの課金も停止されます²。\n- ロードバランサーを削除しても、登録済みターゲットには影響を与えない点に注意してください²。たとえば、EC2 インスタンスは実行を続け、ターゲットグループに登録されたままです²。\n- 削除保護が有効になった場合、ロードバランサーを削除することはできません²。\n\nこれらの手順を実行する前に、ELBの削除がアプリケーションのパフォーマンスや可用性にどのように影響するかを評価することが重要です。また、AWSのサポートチームに相談することもお勧めします。これらの情報がお役に立てば幸いです。他に何かご質問がありましたら、お気軽にどうぞ。²\n\nソース: Bing との会話 2023/11/10\n(1) Application Load Balancer の削除 - Elastic Load Balancing. https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/application/load-balancer-delete.html.\n(2) 【AWS】ELBセキュリティポリシー変更してTLS 1.0/1.1 無効化 .... https://bing.com/search?q=AWS+ELB%e3%82%92%e7%84%a1%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b%e6%96%b9%e6%b3%95.\n(3) ELB(ALB)の設定・接続・確認 #AWS - Qiita. https://qiita.com/nonZy/items/2952199cb2014668de41.\n(4) 【AWS】ELBセキュリティポリシー変更してTLS 1.0/1.1 無効化 .... https://sayjoyblog.com/elb-securitypolicy/.\n(5) ELB（ALB）のアクセスログ設定 | Oji-Cloud. https://oji-cloud.net/2019/07/17/post-2451/.\n(6) undefined. https://console.aws.amazon.com/ec2/%29."
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-10",
+      "body_markdown": "![](https://storage.googleapis.com/zenn-user-upload/8177de4abacc-20231110.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-10",
+      "body_markdown": "![](https://storage.googleapis.com/zenn-user-upload/22b16518ffea-20231110.png)\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-10",
+      "body_markdown": "![](https://storage.googleapis.com/zenn-user-upload/cdd281ca809f-20231110.png)\n"
+    }
+  ]
+}

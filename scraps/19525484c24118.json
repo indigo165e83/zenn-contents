@@ -1,0 +1,29 @@
+{
+  "title": "json-serverの使い方",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-17",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-17",
+      "body_markdown": "https://github.com/typicode/json-server"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-17",
+      "body_markdown": "実行するには、以下のコマンド\n```bash\nnpx json-server --watch db.json -p 8000\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-17",
+      "body_markdown": "参考\nhttps://zenn.dev/ryome/articles/76a529397258c7"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-17",
+      "body_markdown": "参考　curlの使い方\nhttps://qiita.com/yasuhiroki/items/a569d3371a66e365316f#http-header%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B--i--i--v",
+      "body_updated_at": "2023-06-17"
+    }
+  ]
+}

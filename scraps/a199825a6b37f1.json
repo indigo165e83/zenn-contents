@@ -1,0 +1,35 @@
+{
+  "title": "テスト効率化",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-05-03",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-03",
+      "body_markdown": "## キーワード\n- オールペア法\n- Pict\nhttps://github.com/microsoft/pict\nhttps://github.com/microsoft/pict/releases/tag/v3.7.4\nhttps://github.com/Microsoft/pict/blob/main/doc/pict.md#usage\n- postman\nhttps://identity.getpostman.com/login\nhttps://learning.postman.com/docs/writing-scripts/test-scripts/\n- charls",
+      "body_updated_at": "2023-07-24"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-18",
+      "body_markdown": "QAプラットフォーム\nhttps://qase.io/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-18",
+      "body_markdown": "Playwright E2Eテストツール\nhttps://playwright.dev/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-07-24",
+      "body_markdown": "## pict\n### pict（Pairwise Independent Combinatorial Testing tool）\nMicrosoft社が開発したソフトウェアテストツール。\nPICTは、複数のパラメータの組み合わせテストケースを、オールペア法（ペアワイズ法ともいう）を用いて自動生成します。\n\nhttps://github.com/microsoft/pict\nhttps://github.com/microsoft/pict/releases/tag/v3.7.4\n\n### pictの使い方\n#### 参考\nhttps://github.com/Microsoft/pict/blob/main/doc/pict.md#usage\nhttps://gihyo.jp/dev/feature/01/sp-test/0002\nhttps://qiita.com/odekekepeanuts/items/6eceddc534d87fc797cc\n\n#### 例1）基本の使い方\n以下のようなモデルを作成します。\nこの例で言うと OS、Browser、resolution は パラメータ。（因子とも言う）\nパラメータの右に「:」(コロン)を書く。\nその右に値をカンマで区切って列挙します。(カンマで区切って列挙した値は水準とも言う)\n\n```cmd:sample.txt\n#\n# This is a sample model\n#\n\nOS:           Mac, Windows, Linux, iOS, Android\nBrowser:      Chrome, Edge, Firefox, Safari\nresolution:   1280x720, 1920x1080, 2560x1440\n```\n作成したモデルを指定して、pictを実行します。\n```cmd\npict sample.txt\n```\n#### 結果\n```cmd\nOS\tBrowser\tresolution\niOS\tSafari\t1280x720\nMac\tEdge\t1280x720\nAndroid\tFirefox\t1280x720\niOS\tFirefox\t2560x1440\nLinux\tEdge\t1920x1080\nLinux\tChrome\t1280x720\nAndroid\tSafari\t1920x1080\nAndroid\tChrome\t2560x1440\nWindows\tFirefox\t1920x1080\nLinux\tFirefox\t2560x1440\nWindows\tEdge\t2560x1440\nMac\tChrome\t1920x1080\nMac\tSafari\t2560x1440\niOS\tEdge\t1920x1080\nLinux\tSafari\t1280x720\nAndroid\tEdge\t1280x720\nMac\tFirefox\t1280x720\niOS\tChrome\t2560x1440\nWindows\tChrome\t1280x720\nWindows\tSafari\t1280x720\n```\n\n#### 例2）/o オプションを指定\n/oオプション Order of combinations 組み合わせの順序\nと説明がありますが、ちょっとわかりにくい。\n```cmd\n# 各パラメータの全ての値を2つ組に網羅するテストケースを生成する\npict sample.txt\nor\npict sample.txt /o:2\n\n# 全ての値を網羅するテストケースを生成する\npict sample.txt /o:1\n\n# 各パラメータの全ての値を3つ組に網羅するテストケースを生成する\npict sample.txt /o:3\n\n```\n\n#### 例3）/r オプションを指定\n```cmd\n# ランダム化されたテストケースを生成する\npict sample.txt /r\n```\n#### 結果\n実行に使用されたseed値がエラー出力ストリームに出力されます。\n```cmd\nUsed seed: 10306\n```\n次回、/r:seed値を指定すると、この時に実行したのと同じ結果が出力されます。\n\n```cmd\npict sample.txt /r:10306\n```\n\n",
+      "body_updated_at": "2023-07-25"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-11-03",
+      "body_markdown": "## Autify\nhttps://autify.com/ja/"
+    }
+  ]
+}

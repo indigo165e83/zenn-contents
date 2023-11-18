@@ -1,0 +1,35 @@
+{
+  "title": "linuxのプロンプトでgitのstatusを表示させる方法 posh-git-sh",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-05-20",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-20",
+      "body_markdown": "下記のリポジトリをローカルにcloneします。\nhttps://github.com/lyze/posh-git-sh",
+      "body_updated_at": "2023-05-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-20",
+      "body_markdown": "上記でcloneしたgit-prompt.sh ファイルをホームディレクトリ直下にコピーします。\n~/git-prompt.sh",
+      "body_updated_at": "2023-05-20"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-20",
+      "body_markdown": "~/.bashrc ファイルに以下を追加します。\n```bash\nsource ~/git-prompt.sh\nPROMPT_COMMAND='__posh_git_ps1 \"\\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\" \"\\\\\\$ \";'$PROMPT_COMMAND\n```"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-05-20",
+      "body_markdown": "こちらの記事がカスタマイズ参考に役立ちました。ありがとうございます。\nhttps://zenn.dev/kcabo/articles/555d9cc6dad0c3"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-27",
+      "body_markdown": "windows環境でPowerShellを使う場合\nhttps://qiita.com/osorezugoing/items/903794afad9849d8f343"
+    }
+  ]
+}

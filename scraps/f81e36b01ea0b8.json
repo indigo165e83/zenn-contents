@@ -1,0 +1,14 @@
+{
+  "title": "HTMLとJSX(React,Next.js)の違い",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-02",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "## HTML\nclass\nfor\nonclick, onchange (小文字)\nstyle属性 文字列\n\n## JSX\n中括弧{}でJavaScriptの値を埋め込む\nclassName\nhtmlFor\nonClick, onChange (キャメルケース)\nstyle属性 中括弧{}を二重でくくり、プロパティ名(キャメルケースで表現)をキーとするオブジェクト\n",
+      "body_updated_at": "2023-06-02"
+    }
+  ]
+}

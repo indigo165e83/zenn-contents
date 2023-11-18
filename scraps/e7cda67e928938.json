@@ -1,0 +1,59 @@
+{
+  "title": "Next.jsでデモサイトを作成時の覚え書き",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-07",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "Next.jsのインストール プロジェクト名は nextjs-c2c-demo02\n```bash\nnpx create-next-app@latest\n```",
+      "body_updated_at": "2023-06-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "インストール時の選択\n✔ What is your project named? … nextjs-c2c-demo02\n✔ Would you like to use TypeScript with this project? …  Yes\n✔ Would you like to use ESLint with this project? …  Yes\n✔ Would you like to use Tailwind CSS with this project? … No \n✔ Would you like to use `src/` directory with this project? …  Yes\n✔ Use App Router (recommended)? …  Yes\n✔ Would you like to customize the default import alias? … No ",
+      "body_updated_at": "2023-06-07"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-07",
+      "body_markdown": "githubでリポジトリを管理\n"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "react-hook-form のインストール\n```bash\nnpm install react-hook-form\n```\nhttps://react-hook-form.com/get-started",
+      "body_updated_at": "2023-06-08"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-08",
+      "body_markdown": "SWRのインストール\n```bash\nnpm install swr\n```\nhttps://swr.vercel.app/ja",
+      "body_updated_at": "2023-06-08"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-09",
+      "body_markdown": "styled-componentsのインストール\n```bash\nnpm install styled-components\nnpm install --save-dev @types/styled-components\n```\nhttps://styled-components.com/docs\n\n追記\n```bash\nnpm install styled-components\n```\nだとエラーになる。\n```bash\nnpm install styled-components@latest\n```\nをする。\n\nhttps://stackoverflow.com/questions/70810819/npm-err-cannot-read-properties-of-null-reading-edgesout\n",
+      "body_updated_at": "2023-06-09"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-10",
+      "body_markdown": "Next.jsのインストール プロジェクト名は tic-tac-toe"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-10",
+      "body_markdown": "tailwindをインストール\nhttps://tailwindcss.com/docs/guides/nextjs"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-27",
+      "body_markdown": "Static Exports するには\nhttps://nextjs.org/docs/app/building-your-application/deploying/static-exports\n\nその後、npm run build すると、outフォルダに静的ファイルが作成される。\n\nその後、npm run startするとエラーになる。\n代わりに、npx serve@latest out で実行する。\n\n",
+      "body_updated_at": "2023-06-27"
+    }
+  ]
+}

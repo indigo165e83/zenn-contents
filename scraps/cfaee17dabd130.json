@@ -1,0 +1,18 @@
+{
+  "title": "Mermaid マーメイド UML",
+  "closed": false,
+  "archived": false,
+  "created_at": "2023-06-02",
+  "comments": [
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "https://mermaid.js.org/intro/"
+    },
+    {
+      "author": "aibiz20sasaki",
+      "created_at": "2023-06-02",
+      "body_markdown": "https://github.com/mermaid-js/mermaid"
+    }
+  ]
+}
