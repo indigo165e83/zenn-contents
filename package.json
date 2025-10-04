@@ -9,6 +9,6 @@
   "author": "indigo165e83",
   "license": "ISC",
   "dependencies": {
-    "zenn-cli": "^0.1.155"
+    "zenn-cli": "^0.2.3"
   }
 }
